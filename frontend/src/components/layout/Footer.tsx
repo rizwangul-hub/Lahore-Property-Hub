@@ -1,6 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Building2, MessageCircle, MapPin, Mail, ShieldCheck } from 'lucide-react';
+import { MessageCircle, MapPin, Mail, ShieldCheck } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export const Footer: React.FC = () => {
@@ -13,12 +14,16 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white shadow-sm">
-                <Building2 className="h-5 w-5" />
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-navy-950">
-                Lahore <span className="text-brand-600">Property</span> Hub
-              </span>
+              <Link href="/" aria-label="Property in Lahore home">
+                <Image
+                  src="/logo.jpg"
+                  alt="Property in Lahore"
+                  width={2400}
+                  height={1792}
+                  sizes="128px"
+                  className="h-auto w-32 rounded"
+                />
+              </Link>
             </div>
             <p className="text-sm leading-relaxed text-navy-600">
               The premier property marketplace dedicated to Lahore, Pakistan. Discover homes,
@@ -119,7 +124,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Legal & Dynamic Copyright */}
         <div className="mt-12 border-t border-navy-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-navy-500">
           <p>
-            &copy; {currentYear} {siteConfig.name}. All rights reserved.
+            &copy; {currentYear} {siteConfig.brandName}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-6">
             <Link href="/about" className="hover:text-navy-900 transition-colors">

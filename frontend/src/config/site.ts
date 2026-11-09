@@ -2,13 +2,15 @@ import { AreaItem, CategoryItem } from '@/types';
 
 export const siteConfig = {
   name: 'Lahore Property Hub',
+  brandName: 'Property in Lahore',
   description:
     'Find houses, apartments, plots, shops, and commercial properties for rent or sale in Lahore. Explore Bahria Town, Johar Town, DHA, Gulberg, and other areas.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.propertyinlahore.online',
   apiUrl: process.env.NEXT_PUBLIC_API_URL || 'https://lahore-property-hub-backend.onrender.com/api',
+  logo: '/logo.jpg',
   city: 'Lahore',
   country: 'Pakistan',
-  ogImage: '/icon.svg',
+  ogImage: '/social-share.jpg',
   navLinks: [
     { label: 'Home', href: '/' },
     { label: 'Buy', href: '/buy' },

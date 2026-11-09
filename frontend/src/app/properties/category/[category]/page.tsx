@@ -92,9 +92,10 @@ export async function generateMetadata({
       title,
       description: cat.description,
       url: canonicalUrl,
-      siteName: siteConfig.name,
+      siteName: siteConfig.brandName,
       locale: 'en_PK',
       type: 'website',
+      images: [siteConfig.ogImage],
     },
   };
 }

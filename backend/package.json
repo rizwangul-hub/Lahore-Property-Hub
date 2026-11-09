@@ -10,7 +10,8 @@
     "type-check": "tsc --noEmit",
     "create-admin": "tsx src/scripts/createAdmin.ts",
     "seed:dev": "tsx src/scripts/seedDev.ts",
-    "test:marketing": "tsx src/tests/marketingEngine.test.ts"
+    "test:marketing": "tsx src/tests/marketingEngine.test.ts",
+    "test:e2e": "tsx src/tests/marketingE2E.test.ts"
   },
   "keywords": [
     "real-estate",

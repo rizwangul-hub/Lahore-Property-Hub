@@ -364,3 +364,44 @@ export const updateMarketingSettings = async (
     body: JSON.stringify(payload),
   });
 };
+
+export interface MarketingAnalyticsData {
+  overview: {
+    totalDrafts: number;
+    totalApproved: number;
+    totalPending: number;
+    totalPublished: number;
+    totalRejected: number;
+    totalCancelled: number;
+    totalSkipped: number;
+    activeGroupsCount: number;
+  };
+  publications: {
+    total: number;
+    websiteMarketing: number;
+    propertyMarketing: number;
+  };
+  byCampaignType: {
+    websiteMarketing: number;
+    propertyMarketing: number;
+  };
+  byLanguage: Record<string, number>;
+  topAreas: { area: string; count: number }[];
+  topGroups: { groupName: string; count: number }[];
+  utmThemes: { theme: string; count: number }[];
+}
+
+export const fetchMarketingAnalytics = async (): Promise<MarketingApiResponse<MarketingAnalyticsData>> => {
+  return safeFetch<MarketingAnalyticsData>(`${API_BASE_URL}/marketing/analytics`);
+};
+
+export const publishDraftToFacebookPage = async (
+  draftId: string
+): Promise<MarketingApiResponse<{ postId: string; postUrl: string }>> => {
+  return safeFetch<{ postId: string; postUrl: string }>(
+    `${API_BASE_URL}/marketing/drafts/${draftId}/publish-facebook-page`,
+    {
+      method: 'POST',
+    }
+  );
+};

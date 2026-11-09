@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Building2, Lock, Mail, ArrowRight, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, ArrowLeft } from 'lucide-react';
 import { adminLoginRequest } from '@/lib/adminApi';
 
 export default function AdminLoginPage() {
@@ -50,9 +51,15 @@ export default function AdminLoginPage() {
         {/* Login Card */}
         <div className="rounded-3xl border border-navy-800 bg-navy-900/90 p-8 sm:p-10 shadow-2xl backdrop-blur-md">
           <div className="flex flex-col items-center text-center mb-8">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg mb-4">
-              <Building2 className="h-7 w-7" />
-            </div>
+            <Image
+              src="/logo.jpg"
+              alt="Property in Lahore"
+              width={2400}
+              height={1792}
+              priority
+              sizes="(max-width: 640px) 60vw, 220px"
+              className="mb-4 h-auto w-[min(60vw,220px)] rounded-lg shadow-[0_0_30px_rgba(0,168,45,0.18)]"
+            />
             <h1 className="text-xl sm:text-2xl font-extrabold text-white">
               Administrator Login
             </h1>

@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Comprehensive Lahore property guides: document verification, registry vs transfer letter, tenancy contract bylaws, and Marla/Kanal plot dimension calculators.',
     url: `${siteConfig.url}/guides`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'website',
+    images: [siteConfig.ogImage],
   },
 };
 

@@ -1,6 +1,7 @@
 import app from './app.js';
 import { config, validateEnv } from './config/index.js';
 import { connectDatabase, disconnectDatabase } from './config/database.js';
+import { startMarketingScheduler, stopMarketingScheduler } from './services/marketingScheduler.js';
 
 const startServer = async (): Promise<void> => {
   // 1. Validate environment configuration
@@ -8,6 +9,9 @@ const startServer = async (): Promise<void> => {
 
   // 2. Connect to MongoDB Atlas
   await connectDatabase();
+
+  // 3. Start automated campaign scheduler
+  startMarketingScheduler();
 
   const server = app.listen(config.port, () => {
     console.log(
@@ -19,6 +23,7 @@ const startServer = async (): Promise<void> => {
   // Graceful shutdown handling
   const shutdown = async (signal: string) => {
     console.log(`\nReceived ${signal}. Gracefully shutting down...`);
+    stopMarketingScheduler();
     server.close(async () => {
       await disconnectDatabase();
       console.log('HTTP server closed.');

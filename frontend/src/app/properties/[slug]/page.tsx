@@ -194,7 +194,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: siteConfig.name,
+      siteName: siteConfig.brandName,
       locale: 'en_PK',
       type: 'website',
     },

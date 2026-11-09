@@ -10,6 +10,7 @@ import {
   Calendar,
   Send,
   Sparkles,
+  BarChart3,
 } from 'lucide-react';
 
 interface MarketingNavProps {
@@ -50,6 +51,11 @@ export default function MarketingNav({ pendingCount = 0, approvedCount = 0 }: Ma
       icon: Send,
       badge: approvedCount > 0 ? approvedCount : undefined,
       badgeColor: 'bg-brand-600 text-white',
+    },
+    {
+      label: 'Campaign Analytics',
+      href: '/admin/marketing/analytics',
+      icon: BarChart3,
     },
   ];
 

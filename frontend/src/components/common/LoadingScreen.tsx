@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Building2 } from 'lucide-react';
+import Image from 'next/image';
 
 const loadingMessages = [
   'Discover Properties Across Lahore',
@@ -67,14 +67,15 @@ export function LoadingScreen() {
 
       <div className="loading-screen__content">
         <div className="loading-screen__brand">
-          <span className="loading-screen__mark" aria-hidden="true">
-            <Building2 strokeWidth={1.5} />
-          </span>
-          <p className="loading-screen__eyebrow">WELCOME TO</p>
-          <h1 className="loading-screen__wordmark">
-            <span>PROPERTY</span>
-            <span className="loading-screen__wordmark-accent">IN LAHORE</span>
-          </h1>
+          <Image
+            src="/logo.jpg"
+            alt="Property in Lahore"
+            width={2400}
+            height={1792}
+            priority
+            sizes="(max-width: 640px) 78vw, 380px"
+            className="loading-screen__logo"
+          />
           <div className="loading-screen__rule" aria-hidden="true">
             <span />
           </div>

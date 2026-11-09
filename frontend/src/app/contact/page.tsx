@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Get in touch with the Lahore Property Hub team. Reach our Lahore office via WhatsApp, email, or telephone for property listing assistance, dealer verification, and inquiries.',
     url: `${siteConfig.url}/contact`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'website',
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -32,7 +33,7 @@ export default function ContactPage() {
     url: `${siteConfig.url}/contact`,
     mainEntity: {
       '@type': 'RealEstateAgent',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
       telephone: '+92-300-1234567',
       email: 'support@propertyinlahore.online',
       address: {

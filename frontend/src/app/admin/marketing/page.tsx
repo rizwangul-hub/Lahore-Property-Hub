@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   RotateCw,
@@ -105,6 +106,14 @@ export default function MarketingDashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
+            <Image
+              src="/logo.jpg"
+              alt="Property in Lahore"
+              width={2400}
+              height={1792}
+              sizes="64px"
+              className="h-auto w-16 rounded"
+            />
             <span className="px-2.5 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[10px] font-extrabold uppercase tracking-wider">
               AI Marketing Assistant
             </span>

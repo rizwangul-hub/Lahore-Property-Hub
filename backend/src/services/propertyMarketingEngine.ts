@@ -3,6 +3,8 @@ import { Property, IProperty } from '../models/Property.js';
 import { FacebookGroup, IFacebookGroup } from '../models/FacebookGroup.js';
 import { MarketingDraft, IMarketingDraft } from '../models/MarketingDraft.js';
 import { MarketingSettings } from '../models/MarketingSettings.js';
+import { generateAiPropertyMarketingCopy } from './aiMarketingCopyService.js';
+import { preparePropertyMarketingAssets } from './marketingImageService.js';
 
 export function formatPricePK(price: number): string {
   if (price >= 10000000) {
@@ -59,8 +61,11 @@ export function getEligibleAreaKeysForProperty(property: IProperty): string[] {
   if (combined.includes('askari')) {
     eligibleKeys.add('Askari');
   }
-  if (combined.includes('maraka')) {
-    eligibleKeys.add('Maraka');
+  if (combined.includes('maraka') || combined.includes('multan road') || combined.includes('thokar') || combined.includes('chung')) {
+    eligibleKeys.add('Multan Road');
+    if (combined.includes('maraka')) {
+      eligibleKeys.add('Maraka');
+    }
   }
   if (combined.includes('cantt')) {
     eligibleKeys.add('Lahore Cantt');
@@ -190,8 +195,17 @@ export async function processNewApprovedPropertyMarketing(
     // 7. Destination URL on real website
     const destinationUrl = `${settings.officialWebsiteUrl}/property/${property.slug}?utm_source=facebook&utm_medium=group&utm_campaign=property_ad&utm_content=${group._id}`;
 
-    // 8. Generate Localized Copy
-    const copy = buildPropertyMarketingCopy(property, group, destinationUrl);
+    // 8. Generate Localized Copy (Modular AI Generator with Template Fallback)
+    const copy = await generateAiPropertyMarketingCopy(
+      property,
+      group,
+      destinationUrl,
+      { aiTone: settings.preferredAiTone }
+    );
+
+    // 8.1 Prepare transformed & watermarked Cloudinary assets
+    const preparedAssets = preparePropertyMarketingAssets(imageUrls);
+    const finalImageUrls = preparedAssets.primaryUrls.length > 0 ? preparedAssets.primaryUrls : imageUrls;
 
     // 9. Create draft with PENDING_APPROVAL status
     const draft = await MarketingDraft.create({
@@ -207,7 +221,7 @@ export async function processNewApprovedPropertyMarketing(
       headline: copy.headline,
       caption: copy.caption,
       hashtags: copy.hashtags,
-      imageUrls,
+      imageUrls: finalImageUrls,
       targetUrl: destinationUrl,
       status: 'PENDING_APPROVAL',
       idempotencyKey,

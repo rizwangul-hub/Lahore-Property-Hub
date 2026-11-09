@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { FacebookGroup, IFacebookGroup } from '../models/FacebookGroup.js';
 import { MarketingDraft, IMarketingDraft } from '../models/MarketingDraft.js';
 import { MarketingSettings } from '../models/MarketingSettings.js';
+import { generateAiWebsiteMarketingCopy } from './aiMarketingCopyService.js';
+import { getBrandedWebsiteBanner } from './marketingImageService.js';
 
 export type WebsiteMarketingTheme =
   | 'FREE_PROPERTY_LISTINGS'
@@ -200,15 +202,16 @@ export async function generateDailyWebsiteCampaigns(): Promise<{
       continue;
     }
 
-    // 3. Generate Localized Copy
-    const copy = buildWebsiteMarketingCopy(
+    // 3. Generate Localized Copy (Modular AI Generator with Template Fallback)
+    const copy = await generateAiWebsiteMarketingCopy(
       currentTheme,
       group.preferredLanguage || 'ROMAN_URDU',
       group,
-      settings.officialWebsiteUrl
+      settings.officialWebsiteUrl,
+      { aiTone: settings.preferredAiTone }
     );
 
-    const bannerImage = bannerUrls[drafts.length % bannerUrls.length];
+    const bannerImage = getBrandedWebsiteBanner(currentTheme, group.area);
 
     // 4. Create Draft in PENDING_APPROVAL status
     const draft = await MarketingDraft.create({

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -167,17 +168,17 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
       <aside className="hidden lg:flex flex-col w-64 bg-navy-950 text-white border-r border-navy-800 shrink-0 select-none">
         {/* Brand */}
         <div className="h-20 flex items-center gap-3 px-6 border-b border-navy-800/80">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white shadow-sm">
-            <Building2 className="h-5 w-5" />
-          </div>
-          <div>
-            <div className="text-sm font-extrabold tracking-tight text-white">
-              Lahore <span className="text-brand-400">Hub</span>
-            </div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-brand-400">
-              Admin Portal
-            </div>
-          </div>
+          <Image
+            src="/logo.jpg"
+            alt="Property in Lahore"
+            width={2400}
+            height={1792}
+            sizes="192px"
+            className="h-auto w-[92px] rounded shadow-[0_0_22px_rgba(0,168,45,0.15)]"
+          />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400">
+            Admin Portal
+          </span>
         </div>
 
         {/* Navigation Links */}
@@ -244,6 +245,14 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
             <span className="hidden sm:inline-block text-xs font-bold uppercase tracking-wider text-navy-400">
               Administrative Control Panel
             </span>
+            <Image
+              src="/logo.jpg"
+              alt="Property in Lahore"
+              width={2400}
+              height={1792}
+              sizes="88px"
+              className="h-auto w-[68px] rounded"
+            />
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
@@ -368,7 +377,14 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
           <div className="fixed inset-0 z-50 flex bg-navy-950/70 backdrop-blur-sm lg:hidden">
             <div className="relative flex flex-col w-64 bg-navy-950 text-white p-4 h-full shadow-2xl">
               <div className="flex items-center justify-between pb-4 border-b border-navy-800">
-                <span className="text-sm font-bold text-white">Admin Menu</span>
+                <Image
+                  src="/logo.jpg"
+                  alt="Property in Lahore"
+                  width={2400}
+                  height={1792}
+                  sizes="112px"
+                  className="h-auto w-28 rounded"
+                />
                 <button
                   type="button"
                   onClick={() => setMobileSidebarOpen(false)}

@@ -148,14 +148,16 @@ export function generateDynamicSearchMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: siteConfig.name,
+      siteName: siteConfig.brandName,
       locale: 'en_PK',
       type: 'website',
+      images: [siteConfig.ogImage],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [siteConfig.ogImage],
     },
   };
 }

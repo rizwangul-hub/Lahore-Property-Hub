@@ -22,9 +22,17 @@ export const metadata: Metadata = {
     description:
       'Find houses, apartments, plots, shops, and commercial properties for rent or sale in Lahore. Explore Bahria Town, Johar Town, DHA, Gulberg, and other areas.',
     url: siteConfig.url,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'website',
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.brandName,
+      },
+    ],
   },
 };
 
@@ -32,21 +40,31 @@ export default function HomePage() {
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: siteConfig.name,
+    name: siteConfig.brandName,
     url: siteConfig.url,
     description: siteConfig.description,
+    publisher: { '@id': `${siteConfig.url}/#organization` },
     potentialAction: {
       '@type': 'SearchAction',
       target: `${siteConfig.url}/properties-for-sale/lahore?area={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   };
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${siteConfig.url}/#organization`,
+    name: siteConfig.brandName,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/icon.png`,
+    image: `${siteConfig.url}${siteConfig.logo}`,
+  };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema, websiteSchema]) }}
       />
       <div className="flex flex-col">
         {/* 1. Hero Section with 7-Image 3-Second Automatic Slider */}

@@ -20,15 +20,18 @@ import {
   getMarketingSettings,
   updateMarketingSettings,
   getMarketingStats,
+  publishDraftToFacebookPage,
 } from '../controllers/marketingController.js';
+import { getMarketingAnalytics } from '../controllers/marketingAnalyticsController.js';
 
 const router = Router();
 
 // Protect ALL marketing routes with existing adminAuth middleware
 router.use(adminAuth);
 
-// Statistics
+// Statistics & Analytics
 router.get('/stats', getMarketingStats);
+router.get('/analytics', getMarketingAnalytics);
 
 // Facebook Groups
 router.get('/groups', getFacebookGroups);
@@ -46,6 +49,7 @@ router.post('/drafts/:id/approve', approveMarketingDraft);
 router.post('/drafts/:id/reject', rejectMarketingDraft);
 router.post('/drafts/:id/skip', skipMarketingDraft);
 router.post('/drafts/:id/confirm-published', confirmPublished);
+router.post('/drafts/:id/publish-facebook-page', publishDraftToFacebookPage);
 
 // Campaign Generators
 router.post('/campaigns/generate-website', triggerWebsiteMarketingRun);

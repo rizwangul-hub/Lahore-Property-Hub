@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Learn about Lahore Property Hub, the premier property marketplace in Lahore, Pakistan. Discover our verified listing standards, zero broker commission browsing, and direct WhatsApp seller contact.',
     url: `${siteConfig.url}/about`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'website',
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -33,7 +34,7 @@ export default function AboutPage() {
     url: `${siteConfig.url}/about`,
     mainEntity: {
       '@type': 'RealEstateAgent',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
       url: siteConfig.url,
       telephone: '+92-300-1234567',
       address: {

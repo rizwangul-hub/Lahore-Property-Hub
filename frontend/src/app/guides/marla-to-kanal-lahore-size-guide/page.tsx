@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Complete guide to land measurement units in Lahore: 225 sq ft vs 272 sq ft Marla standards, covered area benchmarks, room distributions, and society construction setbacks.',
     url: `${siteConfig.url}/guides/marla-to-kanal-lahore-size-guide`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'article',
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -32,14 +33,14 @@ export default function MarlaKanalGuidePage() {
       'Detailed calculation of Lahore plot dimensions, covered construction area, and layout planning.',
     author: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
     },
     publisher: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/icon.svg`,
+        url: `${siteConfig.url}/icon.png`,
       },
     },
     datePublished: '2026-03-01T08:00:00+05:00',

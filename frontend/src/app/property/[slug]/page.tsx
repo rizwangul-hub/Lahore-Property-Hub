@@ -53,7 +53,7 @@ export async function generateMetadata({
   const ogImage =
     property.images && property.images.length > 0
       ? property.images[0]
-      : `${siteConfig.url}/icon.svg`;
+      : `${siteConfig.url}${siteConfig.ogImage}`;
 
   return {
     title: pageTitle,
@@ -65,7 +65,7 @@ export async function generateMetadata({
       title: pageTitle,
       description: metaDescription,
       url: canonicalUrl,
-      siteName: siteConfig.name,
+      siteName: siteConfig.brandName,
       locale: 'en_PK',
       type: 'article',
       images: [

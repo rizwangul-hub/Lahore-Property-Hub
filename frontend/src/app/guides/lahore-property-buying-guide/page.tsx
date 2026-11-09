@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Comprehensive step-by-step checklist on buying property in Lahore: verifying Fard Malkiat, NDC certificate, DHA/LDA transfer procedures, and tax payments.',
     url: `${siteConfig.url}/guides/lahore-property-buying-guide`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'article',
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -32,14 +33,14 @@ export default function BuyingGuidePage() {
       'A complete legal and practical checklist for buying houses, apartments, and plots across Lahore.',
     author: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
     },
     publisher: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/icon.svg`,
+        url: `${siteConfig.url}/icon.png`,
       },
     },
     datePublished: '2026-01-15T08:00:00+05:00',

@@ -9,6 +9,7 @@ import { AuditLog } from '../models/AuditLog.js';
 import { generateDailyWebsiteCampaigns, WEBSITE_THEMES, buildWebsiteMarketingCopy, WebsiteMarketingTheme } from '../services/websiteMarketingEngine.js';
 import { processNewApprovedPropertyMarketing, buildPropertyMarketingCopy } from '../services/propertyMarketingEngine.js';
 import { reconcileAllPropertyDrafts } from '../services/marketingLifecycleSync.js';
+import { publishToOfficialFacebookPage } from '../services/facebookPageService.js';
 
 const isValidObjectId = (id: string): boolean => mongoose.Types.ObjectId.isValid(id);
 
@@ -1013,5 +1014,34 @@ export const getMarketingStats = async (
     });
   } catch (error) {
     next(error);
+  }
+};
+
+export const publishDraftToFacebookPage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const draft = await MarketingDraft.findById(id);
+    if (!draft) {
+      res.status(404).json({ success: false, message: 'Draft not found' });
+      return;
+    }
+
+    const result = await publishToOfficialFacebookPage(draft, req.admin?.email);
+    if (!result.success) {
+      res.status(400).json({ success: false, message: result.error });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Published to official Facebook Business Page successfully.',
+      data: result,
+    });
+  } catch (err) {
+    next(err);
   }
 };

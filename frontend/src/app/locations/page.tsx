@@ -19,9 +19,10 @@ export const metadata: Metadata = {
     description:
       'Explore verified real estate across all major Lahore housing societies and localities: Bahria Town, DHA Defence, Johar Town, Gulberg, Model Town, Lake City, and more.',
     url: `${siteConfig.url}/locations`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'website',
+    images: [siteConfig.ogImage],
   },
 };
 

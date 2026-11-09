@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Building2, Menu, X, PlusCircle, Search } from 'lucide-react';
+import { Menu, X, PlusCircle, Search } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export const Header: React.FC = () => {
@@ -35,20 +36,18 @@ export const Header: React.FC = () => {
         <Link
           href="/"
           onClick={closeMenu}
-          className="flex items-center gap-3 transition-opacity hover:opacity-90"
-          aria-label="Lahore Property Hub Home"
+          className="flex h-20 w-[min(34vw,120px)] items-center transition-opacity hover:opacity-90 sm:w-[140px]"
+          aria-label="Property in Lahore home"
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-white shadow-sm">
-            <Building2 className="h-6 w-6" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl font-extrabold tracking-tight text-navy-950">
-              Lahore <span className="text-brand-600">Property</span> Hub
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-navy-500">
-              Lahore, Pakistan
-            </span>
-          </div>
+          <Image
+            src="/logo.jpg"
+            alt="Property in Lahore"
+            width={2400}
+            height={1792}
+            priority
+            sizes="(max-width: 640px) 34vw, 140px"
+            className="h-auto max-h-[68px] w-full object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation Links */}

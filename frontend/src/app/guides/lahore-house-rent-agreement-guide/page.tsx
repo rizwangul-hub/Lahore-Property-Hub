@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     description:
       'Essential guide to renting a house in Lahore: Punjab Rented Premises Act 2009 compliance, 2-month security deposit norms, police tenant registration, and utility meter checks.',
     url: `${siteConfig.url}/guides/lahore-house-rent-agreement-guide`,
-    siteName: siteConfig.name,
+    siteName: siteConfig.brandName,
     locale: 'en_PK',
     type: 'article',
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -32,14 +33,14 @@ export default function RentAgreementGuidePage() {
       'Guide for tenants and landlords on drafting compliant rental agreements in Lahore.',
     author: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
     },
     publisher: {
       '@type': 'Organization',
-      name: siteConfig.name,
+      name: siteConfig.brandName,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/icon.svg`,
+        url: `${siteConfig.url}/icon.png`,
       },
     },
     datePublished: '2026-02-10T08:00:00+05:00',
