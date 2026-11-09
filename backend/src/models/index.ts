@@ -4,3 +4,7 @@ export * from './AuditLog.js';
 export * from './Enquiry.js';
 export * from './Notification.js';
 export * from './AnalyticsEvent.js';
+export * from './FacebookGroup.js';
+export * from './MarketingDraft.js';
+export * from './PostingHistory.js';
+export * from './MarketingSettings.js';

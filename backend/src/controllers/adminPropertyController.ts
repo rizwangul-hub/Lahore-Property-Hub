@@ -6,6 +6,8 @@ import { Enquiry } from '../models/Enquiry.js';
 import { Notification } from '../models/Notification.js';
 import { cleanupUploadedImages } from '../services/cloudinaryService.js';
 import { notifySubmitterModerationDecision } from '../services/emailService.js';
+import { processNewApprovedPropertyMarketing } from '../services/propertyMarketingEngine.js';
+import { cancelUnpublishedDraftsForProperty } from '../services/marketingLifecycleSync.js';
 
 /**
  * Helper to validate MongoDB ObjectId
@@ -260,6 +262,11 @@ export const approveProperty = async (
       console.warn('[EmailService] Async approval notification failed:', err)
     );
 
+    // Trigger Marketing AI Engine 2 (New Approved Property Marketing)
+    processNewApprovedPropertyMarketing(property._id).catch((err) =>
+      console.warn('[MarketingAI] Async property marketing generation failed:', err)
+    );
+
     res.status(200).json({
       success: true,
       message: `Property ${property.referenceId} has been approved and is now publicly live.`,
@@ -327,6 +334,11 @@ export const rejectProperty = async (
       console.warn('[EmailService] Async rejection notification failed:', err)
     );
 
+    // Cancel any unpublished marketing drafts for this rejected property
+    cancelUnpublishedDraftsForProperty(property._id, `Property rejected by admin: ${reason.trim()}`).catch((err) =>
+      console.warn('[MarketingAI] Lifecycle cancellation failed on reject:', err)
+    );
+
     res.status(200).json({
       success: true,
       message: `Property ${property.referenceId} has been rejected.`,
@@ -386,6 +398,17 @@ export const changePropertyStatus = async (
         ipAddress: req.ip || '',
         timestamp: new Date(),
       });
+    }
+
+    // Lifecycle Synchronization with Marketing AI
+    if (property.status === 'APPROVED') {
+      processNewApprovedPropertyMarketing(property._id).catch((err) =>
+        console.warn('[MarketingAI] Async property marketing generation failed on status change:', err)
+      );
+    } else {
+      cancelUnpublishedDraftsForProperty(property._id, `Property status changed to ${property.status}`).catch((err) =>
+        console.warn('[MarketingAI] Lifecycle cancellation failed on status change:', err)
+      );
     }
 
     res.status(200).json({
@@ -571,6 +594,12 @@ export const deleteAdminProperty = async (
 
     const title = property.title;
     const refId = property.referenceId;
+
+    // Cancel unpublished marketing drafts
+    cancelUnpublishedDraftsForProperty(property._id, 'Property deleted by administrator').catch((err) =>
+      console.warn('[MarketingAI] Lifecycle cancellation failed on delete:', err)
+    );
+
     await property.deleteOne();
 
     if (req.admin) {

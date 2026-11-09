@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "type-check": "tsc --noEmit",
     "create-admin": "tsx src/scripts/createAdmin.ts",
-    "seed:dev": "tsx src/scripts/seedDev.ts"
+    "seed:dev": "tsx src/scripts/seedDev.ts",
+    "test:marketing": "tsx src/tests/marketingEngine.test.ts"
   },
   "keywords": [
     "real-estate",
