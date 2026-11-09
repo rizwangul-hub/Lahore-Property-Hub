@@ -99,7 +99,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // 2. Location Landing Pages (e.g. /properties/bahria-town-lahore)
+  // 2. Dedicated Society Landing Pages (e.g. /properties/bahria-town-lahore)
   const locationRoutes: MetadataRoute.Sitemap = LAHORE_AREAS.map((area) => ({
     url: `${baseUrl}/properties/${area.slug}`,
     lastModified: new Date(),
@@ -107,7 +107,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // 3. Category Landing Pages (e.g. /properties/category/houses)
+  // 3. Location-Specific Search Pages for Sale & Rent (e.g. /properties-for-sale/lahore?area=bahria-town)
+  const societySlugs = [
+    'bahria-town',
+    'dha',
+    'johar-town',
+    'gulberg',
+    'model-town',
+    'wapda-town',
+    'valencia-town',
+    'askari',
+    'lake-city',
+    'raiwind-road',
+    'maraka',
+    'lahore-cantt',
+  ];
+
+  const searchLocationSaleRoutes: MetadataRoute.Sitemap = societySlugs.map((slug) => ({
+    url: `${baseUrl}/properties-for-sale/lahore?area=${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.9,
+  }));
+
+  const searchLocationRentRoutes: MetadataRoute.Sitemap = societySlugs.map((slug) => ({
+    url: `${baseUrl}/properties-for-rent/lahore?area=${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.9,
+  }));
+
+  // 4. Category Landing Pages (e.g. /properties/category/houses)
   const categorySlugs = ['houses', 'apartments', 'plots', 'shops', 'offices', 'commercial'];
   const categoryRoutes: MetadataRoute.Sitemap = categorySlugs.map((cat) => ({
     url: `${baseUrl}/properties/category/${cat}`,
@@ -116,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // 4. Approved Property Listings from MongoDB
+  // 5. Approved Property Listings from MongoDB
   let propertyRoutes: MetadataRoute.Sitemap = [];
   try {
     const { properties } = await fetchProperties({ limit: 100 });
@@ -130,5 +160,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.warn('[Sitemap] Could not fetch dynamic properties for sitemap:', err);
   }
 
-  return [...staticRoutes, ...locationRoutes, ...categoryRoutes, ...propertyRoutes];
+  return [
+    ...staticRoutes,
+    ...locationRoutes,
+    ...searchLocationSaleRoutes,
+    ...searchLocationRentRoutes,
+    ...categoryRoutes,
+    ...propertyRoutes,
+  ];
 }

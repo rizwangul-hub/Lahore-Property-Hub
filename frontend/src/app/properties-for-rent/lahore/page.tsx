@@ -1,16 +1,26 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { SearchResultsView } from '@/components/search/SearchResultsView';
-import { siteConfig } from '@/config/site';
+import { generateDynamicSearchMetadata } from '@/lib/seoHelper';
 
-export const metadata: Metadata = {
-  title: 'Properties for Rent in Lahore | Lahore Property Hub',
-  description:
-    'Find houses, apartments, shops, and offices for rent in Lahore. Connect directly with verified owners and realtors across Bahria Town, DHA, and Gulberg.',
-  alternates: {
-    canonical: `${siteConfig.url}/properties-for-rent/lahore`,
-  },
-};
+interface PageProps {
+  searchParams: Promise<{
+    area?: string;
+    type?: string;
+    society?: string;
+    minPrice?: string;
+    maxPrice?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  return generateDynamicSearchMetadata({
+    purpose: 'RENT',
+    basePath: '/properties-for-rent/lahore',
+    searchParams: params,
+  });
+}
 
 export default function PropertiesForRentPage() {
   return (

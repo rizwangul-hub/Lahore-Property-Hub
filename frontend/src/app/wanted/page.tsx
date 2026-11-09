@@ -1,16 +1,26 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { SearchResultsView } from '@/components/search/SearchResultsView';
-import { siteConfig } from '@/config/site';
+import { generateDynamicSearchMetadata } from '@/lib/seoHelper';
 
-export const metadata: Metadata = {
-  title: 'Property Wanted Requirements | Lahore Property Hub',
-  description:
-    'Browse active buyer and tenant property demands in Lahore. Connect with verified buyers looking for plots and houses.',
-  alternates: {
-    canonical: `${siteConfig.url}/wanted`,
-  },
-};
+interface PageProps {
+  searchParams: Promise<{
+    area?: string;
+    type?: string;
+    society?: string;
+    minPrice?: string;
+    maxPrice?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  return generateDynamicSearchMetadata({
+    purpose: 'WANTED',
+    basePath: '/wanted',
+    searchParams: params,
+  });
+}
 
 export default function WantedPage() {
   return (

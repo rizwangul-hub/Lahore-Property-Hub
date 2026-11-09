@@ -1,16 +1,26 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { SearchResultsView } from '@/components/search/SearchResultsView';
-import { siteConfig } from '@/config/site';
+import { generateDynamicSearchMetadata } from '@/lib/seoHelper';
 
-export const metadata: Metadata = {
-  title: 'Properties for Sale in Lahore | Lahore Property Hub',
-  description:
-    'Browse houses, plots, apartments, and commercial properties for sale in Lahore. Explore DHA, Bahria Town, Gulberg, Johar Town, and all prime sectors.',
-  alternates: {
-    canonical: `${siteConfig.url}/properties-for-sale/lahore`,
-  },
-};
+interface PageProps {
+  searchParams: Promise<{
+    area?: string;
+    type?: string;
+    society?: string;
+    minPrice?: string;
+    maxPrice?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  return generateDynamicSearchMetadata({
+    purpose: 'SALE',
+    basePath: '/properties-for-sale/lahore',
+    searchParams: params,
+  });
+}
 
 export default function PropertiesForSalePage() {
   return (

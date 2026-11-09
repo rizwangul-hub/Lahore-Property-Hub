@@ -1,16 +1,26 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { SearchResultsView } from '@/components/search/SearchResultsView';
-import { siteConfig } from '@/config/site';
+import { generateDynamicSearchMetadata } from '@/lib/seoHelper';
 
-export const metadata: Metadata = {
-  title: 'Rent Property in Lahore | Lahore Property Hub',
-  description:
-    'Find houses, apartments, shops, and offices for rent across Lahore. Connect directly with verified owners on WhatsApp.',
-  alternates: {
-    canonical: `${siteConfig.url}/rent`,
-  },
-};
+interface PageProps {
+  searchParams: Promise<{
+    area?: string;
+    type?: string;
+    society?: string;
+    minPrice?: string;
+    maxPrice?: string;
+  }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  return generateDynamicSearchMetadata({
+    purpose: 'RENT',
+    basePath: '/rent',
+    searchParams: params,
+  });
+}
 
 export default function RentPage() {
   return (
