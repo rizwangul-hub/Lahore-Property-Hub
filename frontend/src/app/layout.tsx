@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     apple: '/icon.svg',
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'nOxhVYb-_2WzWnW58lL45gumDyJ8O4R6sHZ_eumO4uE',
   },
 };
 
@@ -53,6 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <meta name="google-site-verification" content="nOxhVYb-_2WzWnW58lL45gumDyJ8O4R6sHZ_eumO4uE" />
+      </head>
       <body className="flex min-h-screen flex-col bg-navy-50 text-navy-900 antialiased">
         <Header />
         <main className="flex-1">{children}</main>
