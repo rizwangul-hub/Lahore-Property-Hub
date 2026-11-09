@@ -14,36 +14,50 @@ export const createApp = (): Application => {
   // Security Headers
   app.use(helmet());
 
-  // CORS Configuration supporting custom domains (with or without www) and localhost
+  // CORS Configuration supporting custom domains (with or without www), vercel, and localhost
   const allowedOrigins = Array.from(
     new Set([
+      'https://www.propertyinlahore.online',
+      'https://propertyinlahore.online',
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
       config.frontendUrl,
       config.frontendUrl.includes('://www.')
         ? config.frontendUrl.replace('://www.', '://')
         : config.frontendUrl.replace('://', '://www.'),
-      'http://localhost:3000',
-      'http://127.0.0.1:3000',
       ...(process.env.ADDITIONAL_ALLOWED_ORIGINS
         ? process.env.ADDITIONAL_ALLOWED_ORIGINS.split(',').map((o) => o.trim())
         : []),
     ])
   ).filter(Boolean);
 
-  app.use(
-    cors({
-      origin: (origin, callback) => {
-        // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error(`Origin ${origin} not permitted by CORS policy`));
-        }
-      },
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
-    })
-  );
+  const corsOptions: cors.CorsOptions = {
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. mobile apps, curl, server-to-server)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const isListed = allowedOrigins.includes(origin);
+      const isDomainMatch =
+        /^https?:\/\/(www\.)?propertyinlahore\.online(:\d+)?$/.test(origin) ||
+        /^https:\/\/.*\.vercel\.app$/.test(origin);
+
+      if (isListed || isDomainMatch) {
+        callback(null, true);
+      } else {
+        console.warn(`[CORS] Origin rejected: ${origin}`);
+        callback(null, false);
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+    optionsSuccessStatus: 200,
+  };
+
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 
   // Rate Limiting
   const limiter = rateLimit({

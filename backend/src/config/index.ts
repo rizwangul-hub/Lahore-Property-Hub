@@ -36,7 +36,7 @@ export const config: AppConfig = {
   appName: 'Lahore Property Hub API',
   port: parseInt(process.env.PORT || '5000', 10),
   nodeEnv: (process.env.NODE_ENV as AppConfig['nodeEnv']) || 'development',
-  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
+  frontendUrl: process.env.FRONTEND_URL || 'https://www.propertyinlahore.online',
   mongoUri: process.env.MONGODB_URI || '',
   jwtSecret: process.env.JWT_SECRET || 'lahore-hub-dev-jwt-secret-replace-in-prod',
   cloudinary: {
