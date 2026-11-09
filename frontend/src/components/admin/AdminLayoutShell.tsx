@@ -18,6 +18,7 @@ import {
   MessageSquare,
   BarChart3,
   Bell,
+  Megaphone,
 } from 'lucide-react';
 import {
   fetchAdminProfile,
@@ -154,6 +155,7 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
     { label: 'Approved Properties', href: '/admin/properties/approved', icon: CheckCircle2 },
     { label: 'Rejected Properties', href: '/admin/properties/rejected', icon: XCircle },
     { label: 'All Properties', href: '/admin/properties', icon: Layers },
+    { label: 'Marketing AI Agent', href: '/admin/marketing', icon: Megaphone },
     { label: 'Lead Enquiries', href: '/admin/enquiries', icon: MessageSquare },
     { label: 'Market Analytics', href: '/admin/analytics', icon: BarChart3 },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
@@ -182,7 +184,10 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
         <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto" aria-label="Admin Navigation">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive =
+              item.href === '/admin'
+                ? pathname === '/admin'
+                : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -374,21 +379,27 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
               </div>
 
               <nav className="flex-1 py-4 space-y-1.5 overflow-y-auto">
-                {NAV_ITEMS.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold ${
-                      pathname === item.href
-                        ? 'bg-brand-600 text-white'
-                        : 'text-navy-300 hover:bg-navy-900'
-                    }`}
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
+                {NAV_ITEMS.map((item) => {
+                  const isActive =
+                    item.href === '/admin'
+                      ? pathname === '/admin'
+                      : pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileSidebarOpen(false)}
+                      className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-bold ${
+                        isActive
+                          ? 'bg-brand-600 text-white'
+                          : 'text-navy-300 hover:bg-navy-900'
+                      }`}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
               </nav>
 
               <button

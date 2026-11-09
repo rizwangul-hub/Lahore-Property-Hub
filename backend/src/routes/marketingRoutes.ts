@@ -2,11 +2,14 @@ import { Router } from 'express';
 import { adminAuth } from '../middleware/adminAuth.js';
 import {
   getFacebookGroups,
+  getFacebookGroupById,
   createFacebookGroup,
   updateFacebookGroup,
   deleteFacebookGroup,
   getMarketingDrafts,
   getMarketingDraftById,
+  updateMarketingDraft,
+  regenerateMarketingDraft,
   approveMarketingDraft,
   rejectMarketingDraft,
   skipMarketingDraft,
@@ -16,6 +19,7 @@ import {
   getPostingHistory,
   getMarketingSettings,
   updateMarketingSettings,
+  getMarketingStats,
 } from '../controllers/marketingController.js';
 
 const router = Router();
@@ -23,8 +27,12 @@ const router = Router();
 // Protect ALL marketing routes with existing adminAuth middleware
 router.use(adminAuth);
 
+// Statistics
+router.get('/stats', getMarketingStats);
+
 // Facebook Groups
 router.get('/groups', getFacebookGroups);
+router.get('/groups/:id', getFacebookGroupById);
 router.post('/groups', createFacebookGroup);
 router.put('/groups/:id', updateFacebookGroup);
 router.delete('/groups/:id', deleteFacebookGroup);
@@ -32,6 +40,8 @@ router.delete('/groups/:id', deleteFacebookGroup);
 // Marketing Drafts
 router.get('/drafts', getMarketingDrafts);
 router.get('/drafts/:id', getMarketingDraftById);
+router.patch('/drafts/:id', updateMarketingDraft);
+router.post('/drafts/:id/regenerate', regenerateMarketingDraft);
 router.post('/drafts/:id/approve', approveMarketingDraft);
 router.post('/drafts/:id/reject', rejectMarketingDraft);
 router.post('/drafts/:id/skip', skipMarketingDraft);

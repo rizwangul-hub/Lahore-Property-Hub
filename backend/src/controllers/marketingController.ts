@@ -62,6 +62,63 @@ export const getFacebookGroups = async (
   }
 };
 
+export const getFacebookGroupById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, message: 'Invalid group ID' });
+      return;
+    }
+
+    const group = await FacebookGroup.findById(id).lean();
+    if (!group) {
+      res.status(404).json({ success: false, message: 'Group not found' });
+      return;
+    }
+
+    const now = new Date();
+    const freqMs = (group.postingFrequencyLimitHours || 24) * 60 * 60 * 1000;
+
+    const nextEligibleWebsite = group.websiteMarketingLastPostedAt
+      ? new Date(new Date(group.websiteMarketingLastPostedAt).getTime() + freqMs)
+      : null;
+    const isWebsiteInCooldown = nextEligibleWebsite ? nextEligibleWebsite > now : false;
+
+    const nextEligibleProperty = group.propertyMarketingLastPostedAt
+      ? new Date(new Date(group.propertyMarketingLastPostedAt).getTime() + freqMs)
+      : null;
+    const isPropertyInCooldown = nextEligibleProperty ? nextEligibleProperty > now : false;
+
+    const [totalCampaigns, totalConfirmed, recentHistory] = await Promise.all([
+      MarketingDraft.countDocuments({ groupId: group._id }),
+      PostingHistory.countDocuments({ groupId: group._id, status: 'CONFIRMED' }),
+      PostingHistory.find({ groupId: group._id }).sort({ postedAt: -1 }).limit(10).lean(),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ...group,
+        totalCampaigns,
+        totalConfirmed,
+        recentHistory,
+        cooldown: {
+          isWebsiteInCooldown,
+          nextEligibleWebsite,
+          isPropertyInCooldown,
+          nextEligibleProperty,
+        },
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createFacebookGroup = async (
   req: Request,
   res: Response,
@@ -458,6 +515,119 @@ export const skipMarketingDraft = async (
   }
 };
 
+export const updateMarketingDraft = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { headline, caption, hashtags, imageUrls } = req.body;
+
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, message: 'Invalid draft ID' });
+      return;
+    }
+
+    const draft = await MarketingDraft.findById(id);
+    if (!draft) {
+      res.status(404).json({ success: false, message: 'Draft not found' });
+      return;
+    }
+
+    if (draft.status === 'PUBLISHED') {
+      res.status(400).json({ success: false, message: 'Cannot edit an already published draft.' });
+      return;
+    }
+
+    if (headline && typeof headline === 'string') draft.headline = headline.trim();
+    if (caption && typeof caption === 'string') draft.caption = caption.trim();
+    if (Array.isArray(hashtags)) draft.hashtags = hashtags.map(String);
+    if (Array.isArray(imageUrls)) draft.imageUrls = imageUrls.map(String);
+
+    await draft.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Draft content updated successfully.',
+      data: draft,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const regenerateMarketingDraft = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    if (!isValidObjectId(id)) {
+      res.status(400).json({ success: false, message: 'Invalid draft ID' });
+      return;
+    }
+
+    const draft = await MarketingDraft.findById(id);
+    if (!draft) {
+      res.status(404).json({ success: false, message: 'Draft not found' });
+      return;
+    }
+
+    if (draft.status === 'PUBLISHED') {
+      res.status(400).json({ success: false, message: 'Cannot regenerate a published draft.' });
+      return;
+    }
+
+    const group = await FacebookGroup.findById(draft.groupId);
+    if (!group) {
+      res.status(404).json({ success: false, message: 'Target group not found.' });
+      return;
+    }
+
+    const settings = await MarketingSettings.findOne();
+    const websiteUrl = settings?.officialWebsiteUrl || 'https://www.propertyinlahore.online';
+
+    if (draft.campaignType === 'WEBSITE_MARKETING') {
+      // Pick next rotating theme different from current
+      const currentIdx = WEBSITE_THEMES.indexOf((draft.theme as WebsiteMarketingTheme) || 'FREE_PROPERTY_LISTINGS');
+      const nextTheme = WEBSITE_THEMES[(currentIdx + 1) % WEBSITE_THEMES.length];
+      const copy = buildWebsiteMarketingCopy(nextTheme, draft.language, group, websiteUrl);
+
+      draft.headline = copy.headline;
+      draft.caption = copy.caption;
+      draft.hashtags = copy.hashtags;
+      draft.theme = nextTheme;
+    } else {
+      // Property Marketing
+      if (!draft.propertyId) {
+        res.status(400).json({ success: false, message: 'Missing property reference.' });
+        return;
+      }
+      const property = await Property.findById(draft.propertyId);
+      if (!property || property.status !== 'APPROVED') {
+        res.status(400).json({ success: false, message: 'Property is no longer available or approved.' });
+        return;
+      }
+      const copy = buildPropertyMarketingCopy(property, group, draft.targetUrl);
+      draft.headline = copy.headline;
+      draft.caption = copy.caption;
+      draft.hashtags = copy.hashtags;
+    }
+
+    await draft.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Draft content regenerated successfully with new creative variations.',
+      data: draft,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // ==========================================
 // 3. CAMPAIGN GENERATOR CONTROLLERS
 // ==========================================
@@ -542,10 +712,23 @@ export const confirmPublished = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const { facebookPostUrl, notes } = req.body;
+    const { facebookPostUrl, notes, publicationDate } = req.body;
 
     if (!isValidObjectId(id)) {
       res.status(400).json({ success: false, message: 'Invalid draft ID' });
+      return;
+    }
+
+    if (
+      !facebookPostUrl ||
+      typeof facebookPostUrl !== 'string' ||
+      !facebookPostUrl.trim() ||
+      !/^https?:\/\/.+/i.test(facebookPostUrl.trim())
+    ) {
+      res.status(400).json({
+        success: false,
+        message: 'A valid Facebook post URL is required to confirm publication.',
+      });
       return;
     }
 
@@ -581,7 +764,9 @@ export const confirmPublished = async (
       }
     }
 
-    const now = new Date();
+    const now = publicationDate && !isNaN(new Date(publicationDate).getTime())
+      ? new Date(publicationDate)
+      : new Date();
 
     draft.status = 'PUBLISHED';
     draft.publishedAt = now;
@@ -717,6 +902,10 @@ export const updateMarketingSettings = async (
       'defaultHashtags',
       'autoEngine2OnApproval',
       'dailyWebsitePostCap',
+      'dailyGenerationTime',
+      'enableWebsiteMarketing',
+      'enablePropertyMarketing',
+      'languagePreferences',
       'defaultBannerUrls',
       'preferredAiTone',
     ];
@@ -744,6 +933,83 @@ export const updateMarketingSettings = async (
       success: true,
       message: 'Marketing settings updated successfully',
       data: settings,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ==========================================
+// 6. DASHBOARD STATISTICS CONTROLLER
+// ==========================================
+
+export const getMarketingStats = async (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    const [
+      totalActiveGroups,
+      websiteMarketingGroups,
+      propertyMarketingGroups,
+      todayWebsiteDrafts,
+      newPropertyDrafts,
+      pendingApprovals,
+      approvedDrafts,
+      publishedPosts,
+      cancelledDrafts,
+      approvedPropertiesCount,
+      lastWebsiteDraft,
+      lastPropertyDraft,
+    ] = await Promise.all([
+      FacebookGroup.countDocuments({ isActive: true }),
+      FacebookGroup.countDocuments({ isActive: true, allowsWebsiteMarketing: true }),
+      FacebookGroup.countDocuments({ isActive: true, allowsPropertyAdvertising: true }),
+      MarketingDraft.countDocuments({ campaignType: 'WEBSITE_MARKETING', createdAt: { $gte: startOfToday } }),
+      MarketingDraft.countDocuments({ campaignType: 'PROPERTY_MARKETING', createdAt: { $gte: startOfToday } }),
+      MarketingDraft.countDocuments({ status: 'PENDING_APPROVAL' }),
+      MarketingDraft.countDocuments({ status: 'APPROVED' }),
+      MarketingDraft.countDocuments({ status: 'PUBLISHED' }),
+      MarketingDraft.countDocuments({ status: 'CANCELLED_PROPERTY_UNAVAILABLE' }),
+      Property.countDocuments({ status: 'APPROVED' }),
+      MarketingDraft.findOne({ campaignType: 'WEBSITE_MARKETING' }).sort({ createdAt: -1 }).select('createdAt theme').lean(),
+      MarketingDraft.findOne({ campaignType: 'PROPERTY_MARKETING' }).sort({ createdAt: -1 }).select('createdAt').lean(),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        totalActiveGroups,
+        websiteMarketingGroups,
+        propertyMarketingGroups,
+        todayWebsiteDrafts,
+        newPropertyDrafts,
+        pendingApprovals,
+        approvedDrafts,
+        publishedPosts,
+        cancelledDrafts,
+        approvedPropertiesCount,
+        engine1: {
+          status: 'IDLE',
+          todayGenerated: todayWebsiteDrafts,
+          eligibleGroups: websiteMarketingGroups,
+          lastRunAt: lastWebsiteDraft?.createdAt || null,
+          lastTheme: lastWebsiteDraft?.theme || null,
+        },
+        engine2: {
+          status: 'ACTIVE',
+          approvedPropertiesDetected: approvedPropertiesCount,
+          matchingGroups: propertyMarketingGroups,
+          generatedDrafts: newPropertyDrafts,
+          pendingApprovals,
+          cancelledDrafts,
+          lastRunAt: lastPropertyDraft?.createdAt || null,
+        },
+      },
     });
   } catch (error) {
     next(error);

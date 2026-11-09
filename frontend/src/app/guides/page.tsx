@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const GUIDES_LIST = [
+const GUIDES_LIST = [
   {
     slug: 'lahore-property-buying-guide',
     title: 'Lahore Property Buying Guide: Verification, Documents & Society Transfer Letters',

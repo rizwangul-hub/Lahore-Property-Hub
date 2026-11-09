@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "node --max-old-space-size=4096 --max-semi-space-size=64 ./node_modules/typescript/bin/tsc",
     "start": "node dist/server.js",
     "type-check": "tsc --noEmit",
     "create-admin": "tsx src/scripts/createAdmin.ts",
