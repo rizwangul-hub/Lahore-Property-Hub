@@ -6,6 +6,10 @@ export interface IMarketingSettings extends Document {
   defaultHashtags: string[];
   autoEngine2OnApproval: boolean;
   dailyWebsitePostCap: number;
+  dailyGenerationTime: string;
+  enableWebsiteMarketing: boolean;
+  enablePropertyMarketing: boolean;
+  languagePreferences: string[];
   defaultBannerUrls: string[];
   preferredAiTone: 'PERSUASIVE' | 'PROFESSIONAL' | 'URGENT';
   updatedBy?: mongoose.Types.ObjectId;
@@ -44,6 +48,23 @@ const MarketingSettingsSchema = new Schema<IMarketingSettings>(
       default: 6,
       min: 1,
       max: 20,
+    },
+    dailyGenerationTime: {
+      type: String,
+      default: '10:00',
+      trim: true,
+    },
+    enableWebsiteMarketing: {
+      type: Boolean,
+      default: true,
+    },
+    enablePropertyMarketing: {
+      type: Boolean,
+      default: true,
+    },
+    languagePreferences: {
+      type: [String],
+      default: ['ENGLISH', 'URDU', 'ROMAN_URDU'],
     },
     defaultBannerUrls: {
       type: [String],

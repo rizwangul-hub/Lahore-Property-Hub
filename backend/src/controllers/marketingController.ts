@@ -6,8 +6,8 @@ import { PostingHistory } from '../models/PostingHistory.js';
 import { MarketingSettings } from '../models/MarketingSettings.js';
 import { Property } from '../models/Property.js';
 import { AuditLog } from '../models/AuditLog.js';
-import { generateDailyWebsiteCampaigns } from '../services/websiteMarketingEngine.js';
-import { processNewApprovedPropertyMarketing } from '../services/propertyMarketingEngine.js';
+import { generateDailyWebsiteCampaigns, WEBSITE_THEMES, buildWebsiteMarketingCopy, WebsiteMarketingTheme } from '../services/websiteMarketingEngine.js';
+import { processNewApprovedPropertyMarketing, buildPropertyMarketingCopy } from '../services/propertyMarketingEngine.js';
 import { reconcileAllPropertyDrafts } from '../services/marketingLifecycleSync.js';
 
 const isValidObjectId = (id: string): boolean => mongoose.Types.ObjectId.isValid(id);
