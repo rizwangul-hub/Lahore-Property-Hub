@@ -57,6 +57,16 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/locations" className="text-navy-600 hover:text-brand-600 transition-colors">
+                  All Lahore Locations
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="text-navy-600 hover:text-brand-600 transition-colors">
+                  Property Guides & Laws
+                </Link>
+              </li>
+              <li>
                 <Link href="/post-property" className="text-navy-600 hover:text-brand-600 transition-colors font-medium text-brand-700">
                   Post Free Property Listing
                 </Link>
@@ -111,7 +121,13 @@ export const Footer: React.FC = () => {
           <p>
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
+            <Link href="/about" className="hover:text-navy-900 transition-colors">
+              About Us
+            </Link>
+            <Link href="/contact" className="hover:text-navy-900 transition-colors">
+              Contact Us
+            </Link>
             <Link href="/privacy" className="hover:text-navy-900 transition-colors">
               Privacy Policy
             </Link>

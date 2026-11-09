@@ -1,7 +1,18 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, FileText } from 'lucide-react';
 import { Container } from '@/components/common/Container';
+import { siteConfig } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions | Lahore Property Hub',
+  description:
+    'Review the Terms & Conditions of Lahore Property Hub. Clear rules and guidelines for posting property listings and browsing real estate in Lahore.',
+  alternates: {
+    canonical: `${siteConfig.url}/terms`,
+  },
+};
 
 export default function TermsPage() {
   return (

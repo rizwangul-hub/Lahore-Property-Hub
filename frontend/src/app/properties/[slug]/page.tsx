@@ -111,6 +111,50 @@ const LOCATION_DETAILED_INFO: Record<
       'Wide price ranges for new investors and home builders',
     ],
   },
+  'valencia-town-lahore': {
+    title: 'Valencia Town Lahore Properties',
+    description:
+      'Valencia Town is a premier gated cooperative housing society located along Defense Road and Pine Avenue in southern Lahore. Known for its wide manicured green belts, community centers, sports facilities, high security, and reputable schools like Beaconhouse and The City School.',
+    highlights: [
+      'Gated, secure, and established residential society',
+      'Direct access to Defense Road, Pine Avenue, and Ring Road',
+      'Top-tier educational institutions and healthcare within the society',
+      'Broad avenues with 5 Marla, 10 Marla, 1 Kanal, and 2 Kanal houses',
+    ],
+  },
+  'askari-lahore': {
+    title: 'Askari Lahore Properties',
+    description:
+      'Askari Housing Schemes (Askari 1 through Askari 11) represent elite, highly organized living in Lahore managed by the Army Welfare Trust. Famed for supreme perimeter security, underground services, beautifully landscaped parks, and spotless residential discipline.',
+    highlights: [
+      'Supreme gated security with strictly controlled resident and visitor checkpoints',
+      'Prime sectors across Cantt, Bedian Road, and Ring Road interchanges',
+      'Flawless civic maintenance and uninterrupted backup power options',
+      'Luxury high-rise apartments and custom-designed independent villas',
+    ],
+  },
+  'lake-city-lahore': {
+    title: 'Lake City Lahore Properties',
+    description:
+      'Lake City Lahore is a premier golf and lifestyle resort community located on Main Raiwind Road with its own dedicated Lahore Ring Road interchange. Boasting an 18-hole championship golf course, international schools, Lake City Mall, Cinepax, and tranquil lakes.',
+    highlights: [
+      'Championship 18-hole golf course and country club lifestyle',
+      'Direct Ring Road interchange providing 15-minute access to DHA and Airport',
+      'Lake City Mall, family entertainment zones, and retail outlets',
+      'Sectors M1 through M8 with ready-to-move designer houses and plots',
+    ],
+  },
+  'maraka-lahore': {
+    title: 'Maraka Lahore Properties',
+    description:
+      'Maraka is a rapidly expanding suburban and farmhouse residential zone situated along Multan Road and Canal Bank near Chung and Thokar Niaz Baig. Ideal for affordable land investments, spacious country farmhouses, and commercial warehouse logistics.',
+    highlights: [
+      'Strategic suburban location on Main Multan Road near Thokar Niaz Baig',
+      'High appreciation potential for affordable residential plots',
+      'Ideal destination for luxury private farmhouses and green estates',
+      'Direct connectivity to Motorway M-2 and provincial transportation routes',
+    ],
+  },
   'lahore-cantt': {
     title: 'Lahore Cantt Properties',
     description:

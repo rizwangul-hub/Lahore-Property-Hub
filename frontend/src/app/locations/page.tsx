@@ -1,10 +1,29 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Container } from '@/components/common/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { AreaCard } from '@/components/property/AreaCard';
-import { LAHORE_AREAS } from '@/config/site';
+import { LAHORE_AREAS, siteConfig } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'All Property Locations & Societies in Lahore | Lahore Property Hub',
+  description:
+    'Explore verified real estate across all major Lahore housing societies and localities: Bahria Town, DHA Defence, Johar Town, Gulberg, Model Town, Lake City, and more.',
+  alternates: {
+    canonical: `${siteConfig.url}/locations`,
+  },
+  openGraph: {
+    title: 'All Property Locations & Societies in Lahore | Lahore Property Hub',
+    description:
+      'Explore verified real estate across all major Lahore housing societies and localities: Bahria Town, DHA Defence, Johar Town, Gulberg, Model Town, Lake City, and more.',
+    url: `${siteConfig.url}/locations`,
+    siteName: siteConfig.name,
+    locale: 'en_PK',
+    type: 'website',
+  },
+};
 
 export default function LocationsPage() {
   return (

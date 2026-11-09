@@ -113,8 +113,39 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     limit: 12,
   });
 
+  // Breadcrumb structured data
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.url,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Categories',
+        item: `${siteConfig.url}/buy`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: cat.title,
+        item: `${siteConfig.url}/properties/category/${category.toLowerCase()}`,
+      },
+    ],
+  };
+
   return (
-    <div className="py-8 sm:py-12 bg-navy-50/50 min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <div className="py-8 sm:py-12 bg-navy-50/50 min-h-screen">
       <Container>
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-xs text-navy-500">
@@ -191,5 +222,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </Container>
     </div>
+    </>
   );
 }

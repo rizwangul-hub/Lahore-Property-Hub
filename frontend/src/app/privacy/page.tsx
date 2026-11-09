@@ -1,7 +1,18 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Shield } from 'lucide-react';
 import { Container } from '@/components/common/Container';
+import { siteConfig } from '@/config/site';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Lahore Property Hub',
+  description:
+    'Read the Privacy Policy for Lahore Property Hub. Learn how we safeguard user data, phone numbers, and property advertisement information.',
+  alternates: {
+    canonical: `${siteConfig.url}/privacy`,
+  },
+};
 
 export default function PrivacyPage() {
   return (
