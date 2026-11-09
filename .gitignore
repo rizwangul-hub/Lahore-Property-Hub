@@ -12,15 +12,11 @@ build/
 out/
 */out/
 
-# Environment and Secret Configuration
+# Environment and Secret Files (Strictly Ignored)
 .env
 .env.*
-!.env.example
-!.env.production.example
 */.env
 */.env.*
-!*/.env.example
-!*/.env.production.example
 
 # Logs and Debugging
 *.log
