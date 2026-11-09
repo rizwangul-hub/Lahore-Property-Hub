@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production Builds
+.next/
+*/.next/
+dist/
+*/dist/
+build/
+*/build/
+out/
+*/out/
+
+# Environment and Secret Configuration
+.env
+.env.*
+!.env.example
+!.env.production.example
+*/.env
+*/.env.*
+!*/.env.example
+!*/.env.production.example
+
+# Logs and Debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System & OS Files
+.DS_Store
+Thumbs.db
+*.pem
+
+# TypeScript Cache
+*.tsbuildinfo
