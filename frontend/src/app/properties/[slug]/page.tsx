@@ -180,7 +180,7 @@ export async function generateMetadata({
     ? area.name
     : slug.replace(/-lahore$/, '').replace(/-/g, ' ');
 
-  const title = `Properties in ${areaName}, Lahore | Lahore Property Hub`;
+  const title = `Properties in ${areaName}, Lahore | Property in Lahore`;
   const description = `Find verified houses, plots, apartments, and commercial properties for rent and sale in ${areaName}, Lahore. Explore societies, pricing, and direct WhatsApp contact.`;
   const canonicalUrl = `${siteConfig.url}/properties/${slug}`;
 

@@ -83,30 +83,30 @@ export function generateDynamicSearchMetadata({
 
   if (purpose === 'SALE') {
     if (!isAllLahore && !isAllTypes) {
-      title = `${typeName} for Sale in ${areaName}, Lahore | Lahore Property Hub`;
+      title = `${typeName} for Sale in ${areaName}, Lahore | Property in Lahore`;
       description = `Explore verified ${typeName.toLowerCase()} for sale in ${areaName}, Lahore. Check current prices, verified photos, plot and house dimensions, and contact owners or dealers directly on WhatsApp.`;
     } else if (!isAllLahore) {
-      title = `Properties for Sale in ${areaName}, Lahore | Lahore Property Hub`;
+      title = `Properties for Sale in ${areaName}, Lahore | Property in Lahore`;
       description = `Find houses, plots, flats, and commercial properties for sale in ${areaName}, Lahore. Connect directly with authentic owners and licensed realtors with zero buyer fees.`;
     } else if (!isAllTypes) {
-      title = `${typeName} for Sale in Lahore | Lahore Property Hub`;
+      title = `${typeName} for Sale in Lahore | Property in Lahore`;
       description = `Browse verified ${typeName.toLowerCase()} for sale across Lahore's premier housing societies: DHA, Bahria Town, Johar Town, Gulberg, and Lake City.`;
     } else {
-      title = `Properties for Sale in Lahore | Lahore Property Hub`;
+      title = `Properties for Sale in Lahore | Property in Lahore`;
       description = `Browse houses, plots, apartments, and commercial properties for sale in Lahore. Explore DHA, Bahria Town, Gulberg, Johar Town, and all prime sectors.`;
     }
   } else if (purpose === 'RENT') {
     if (!isAllLahore && !isAllTypes) {
-      title = `${typeName} for Rent in ${areaName}, Lahore | Lahore Property Hub`;
+      title = `${typeName} for Rent in ${areaName}, Lahore | Property in Lahore`;
       description = `Find ${typeName.toLowerCase()} for rent in ${areaName}, Lahore. Verified rental listings with authentic photos, security details, and direct landlord WhatsApp chat.`;
     } else if (!isAllLahore) {
-      title = `Properties for Rent in ${areaName}, Lahore | Lahore Property Hub`;
+      title = `Properties for Rent in ${areaName}, Lahore | Property in Lahore`;
       description = `Find rental houses, apartments, shops, and offices in ${areaName}, Lahore. Direct tenant-to-owner WhatsApp contact without middleman fees.`;
     } else if (!isAllTypes) {
-      title = `${typeName} for Rent in Lahore | Lahore Property Hub`;
+      title = `${typeName} for Rent in Lahore | Property in Lahore`;
       description = `Explore rental ${typeName.toLowerCase()} across Lahore including DHA, Bahria Town, Gulberg, Model Town, and Askari. Direct contact with landlords.`;
     } else {
-      title = `Properties for Rent in Lahore | Lahore Property Hub`;
+      title = `Properties for Rent in Lahore | Property in Lahore`;
       description = `Find houses, apartments, shops, and offices for rent across Lahore. Connect directly with verified owners on WhatsApp.`;
     }
   } else {
@@ -121,7 +121,7 @@ export function generateDynamicSearchMetadata({
       title = `${typeName} Wanted in Lahore | Buyer Demands`;
       description = `Explore buyer and investor requirements for ${typeName.toLowerCase()} in Lahore.`;
     } else {
-      title = `Property Wanted Requirements in Lahore | Lahore Property Hub`;
+      title = `Property Wanted Requirements in Lahore | Property in Lahore`;
       description = `Explore buyer and tenant property requests in Lahore. Discover specific demands for plots, houses, and commercial buildings.`;
     }
   }

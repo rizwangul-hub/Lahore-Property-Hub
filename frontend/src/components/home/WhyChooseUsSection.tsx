@@ -55,7 +55,7 @@ export const WhyChooseUsSection: React.FC = () => {
       <Container>
         <SectionHeading
           badge="Marketplace Advantages"
-          title="Why Choose Lahore Property Hub"
+          title="Why Choose Property in Lahore"
           subtitle="A specialized real estate portal built specifically for Lahore's dynamic property market."
           centered
         />

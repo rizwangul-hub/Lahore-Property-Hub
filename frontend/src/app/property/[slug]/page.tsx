@@ -42,12 +42,12 @@ export async function generateMetadata({
 
   if (!property) {
     return {
-      title: 'Property Not Found | Lahore Property Hub',
+      title: 'Property Not Found | Property in Lahore',
       description: 'The requested property could not be found or has been unlisted.',
     };
   }
 
-  const pageTitle = `${property.title} | Lahore Property Hub`;
+  const pageTitle = `${property.title} | Property in Lahore`;
   const metaDescription = `Explore this ${property.areaSize} ${property.category} for ${property.purpose} in ${property.location.area}, Lahore. Check property specifications, price, facilities, authentic photos, and contact directly via WhatsApp.`;
   const canonicalUrl = `${siteConfig.url}/property/${property.slug}`;
   const ogImage =

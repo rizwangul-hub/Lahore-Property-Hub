@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
               Administrator Login
             </h1>
             <p className="mt-1 text-xs text-navy-400">
-              Lahore Property Hub Management & Moderation
+              Property in Lahore Management & Moderation
             </p>
           </div>
 

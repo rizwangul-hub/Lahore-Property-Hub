@@ -112,7 +112,7 @@ export function buildPropertyMarketingCopy(
   if (group.preferredLanguage === 'ENGLISH') {
     return {
       headline: `🏡 For ${purposeWord}: ${areaStr} ${categoryWord} in ${locationDetail}`,
-      caption: `🏡 PRIME OPPORTUNITY: ${property.title}\n\n📍 Location: ${locationDetail}\n💰 Demand: ${priceFormatted}\n📐 Size: ${areaStr}\n🏷️ Property Type: ${categoryWord} for ${purposeWord}\n🔖 Ref ID: ${refCode}\n\n📝 Specifications:\n${property.description.slice(0, 350)}...\n\n💬 Direct WhatsApp Contact (Zero Middleman):\nWhatsApp: ${whatsappNumber}\n\n🔗 View Full Photos & Specifications on Lahore Property Hub:\n${destinationUrl}\n\n#LahoreProperty #RealEstateLahore #${property.location.area.replace(/\s+/g, '')}`,
+      caption: `🏡 PRIME OPPORTUNITY: ${property.title}\n\n📍 Location: ${locationDetail}\n💰 Demand: ${priceFormatted}\n📐 Size: ${areaStr}\n🏷️ Property Type: ${categoryWord} for ${purposeWord}\n🔖 Ref ID: ${refCode}\n\n📝 Specifications:\n${property.description.slice(0, 350)}...\n\n💬 Direct WhatsApp Contact (Zero Middleman):\nWhatsApp: ${whatsappNumber}\n\n🔗 View Full Photos & Specifications on Property in Lahore:\n${destinationUrl}\n\n#LahoreProperty #RealEstateLahore #${property.location.area.replace(/\s+/g, '')}`,
       hashtags: ['#LahoreProperty', '#RealEstateLahore', `#${property.location.area.replace(/\s+/g, '')}`],
     };
   }

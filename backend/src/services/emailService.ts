@@ -41,7 +41,7 @@ export const notifyAdminNewProperty = async (property: IProperty): Promise<boole
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
           <h2 style="color: #0f172a; margin-top: 0;">New Property Awaiting Moderation</h2>
-          <p style="color: #475569; font-size: 14px;">A new property advertisement was submitted on <strong>Lahore Property Hub</strong>.</p>
+          <p style="color: #475569; font-size: 14px;">A new property advertisement was submitted on <strong>Property in Lahore</strong>.</p>
           
           <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
             <tr>
@@ -73,7 +73,7 @@ export const notifyAdminNewProperty = async (property: IProperty): Promise<boole
           </div>
           
           <p style="margin-top: 30px; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 10px;">
-            This is an automated notification from Lahore Property Hub Administration.
+            This is an automated notification from Property in Lahore Administration.
           </p>
         </div>
       `,
@@ -103,7 +103,7 @@ export const notifyAdminNewEnquiry = async (enquiry: IEnquiry): Promise<boolean>
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
           <h2 style="color: #0f172a; margin-top: 0;">New Lead Enquiry Received</h2>
-          <p style="color: #475569; font-size: 14px;">A customer has submitted a prospective enquiry on <strong>Lahore Property Hub</strong>.</p>
+          <p style="color: #475569; font-size: 14px;">A customer has submitted a prospective enquiry on <strong>Property in Lahore</strong>.</p>
           
           <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
             <tr>
@@ -141,7 +141,7 @@ export const notifyAdminNewEnquiry = async (enquiry: IEnquiry): Promise<boolean>
           </div>
           
           <p style="margin-top: 30px; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 10px;">
-            Lahore Property Hub Lead Notification Engine
+            Property in Lahore Lead Notification Engine
           </p>
         </div>
       `,
@@ -187,8 +187,8 @@ export const notifySubmitterModerationDecision = async (
           <p style="color: #475569; font-size: 14px;">
             ${
               isApproved
-                ? `Great news! Your property listing <strong>"${property.title}"</strong> (Ref: ${property.referenceId}) has been reviewed, approved, and is now actively published on Lahore Property Hub.`
-                : `Thank you for submitting your listing <strong>"${property.title}"</strong> (Ref: ${property.referenceId}) to Lahore Property Hub. Our moderation team has reviewed your advertisement and noted the following:`
+                ? `Great news! Your property listing <strong>"${property.title}"</strong> (Ref: ${property.referenceId}) has been reviewed, approved, and is now actively published on Property in Lahore.`
+                : `Thank you for submitting your listing <strong>"${property.title}"</strong> (Ref: ${property.referenceId}) to Property in Lahore. Our moderation team has reviewed your advertisement and noted the following:`
             }
           </p>
 
@@ -211,7 +211,7 @@ export const notifySubmitterModerationDecision = async (
           }
 
           <p style="margin-top: 30px; font-size: 12px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 10px;">
-            Lahore Property Hub Customer Support &bull; www.lahorepropertyhub.com
+            Property in Lahore Customer Support &bull; www.propertyinlahore.online
           </p>
         </div>
       `,

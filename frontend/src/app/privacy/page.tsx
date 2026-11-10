@@ -6,9 +6,9 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Lahore Property Hub',
+  title: 'Privacy Policy | Property in Lahore',
   description:
-    'Read the Privacy Policy for Lahore Property Hub. Learn how we safeguard user data, phone numbers, and property advertisement information.',
+    'Read the Privacy Policy for Property in Lahore. Learn how we safeguard user data, phone numbers, and property advertisement information.',
   alternates: {
     canonical: `${siteConfig.url}/privacy`,
   },
@@ -37,12 +37,12 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-2 text-sm text-navy-600">
-            Last updated: {new Date().getFullYear()} &bull; Lahore Property Hub
+            Last updated: {new Date().getFullYear()} &bull; Property in Lahore
           </p>
 
           <div className="mt-8 space-y-6 text-sm text-navy-700 leading-relaxed">
             <p>
-              Lahore Property Hub values your privacy. We are committed to safeguarding personal information
+              Property in Lahore values your privacy. We are committed to safeguarding personal information
               collected when you use our real estate marketplace.
             </p>
             <h2 className="text-lg font-bold text-navy-950">1. Information We Collect</h2>

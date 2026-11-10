@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { PropertyManagementTable } from '@/components/admin/PropertyManagementTable';
 
 export const metadata: Metadata = {
-  title: 'Pending Moderation Queue | Admin Portal | Lahore Property Hub',
+  title: 'Pending Moderation Queue | Admin Portal | Property in Lahore',
   robots: { index: false, follow: false },
 };
 

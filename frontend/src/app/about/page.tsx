@@ -6,16 +6,16 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'About Us | Lahore Property Hub - Pakistan Real Estate Portal',
+  title: 'About Us | Property in Lahore - Pakistan Real Estate Portal',
   description:
-    'Learn about Lahore Property Hub, the premier property marketplace in Lahore, Pakistan. Discover our verified listing standards, zero broker commission browsing, and direct WhatsApp seller contact.',
+    'Learn about Property in Lahore, the premier property marketplace in Lahore, Pakistan. Discover our verified listing standards, zero broker commission browsing, and direct WhatsApp seller contact.',
   alternates: {
     canonical: `${siteConfig.url}/about`,
   },
   openGraph: {
-    title: 'About Us | Lahore Property Hub - Pakistan Real Estate Portal',
+    title: 'About Us | Property in Lahore - Pakistan Real Estate Portal',
     description:
-      'Learn about Lahore Property Hub, the premier property marketplace in Lahore, Pakistan. Discover our verified listing standards, zero broker commission browsing, and direct WhatsApp seller contact.',
+      'Learn about Property in Lahore, the premier property marketplace in Lahore, Pakistan. Discover our verified listing standards, zero broker commission browsing, and direct WhatsApp seller contact.',
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.brandName,
     locale: 'en_PK',
@@ -28,7 +28,7 @@ export default function AboutPage() {
   const aboutSchema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'About Lahore Property Hub',
+    name: 'About Property in Lahore',
     description:
       'Premier real estate marketplace dedicated exclusively to Lahore, Pakistan properties.',
     url: `${siteConfig.url}/about`,
@@ -65,7 +65,7 @@ export default function AboutPage() {
               Transforming Property Discovery in <span className="text-brand-600">Lahore</span>
             </h1>
             <p className="text-sm sm:text-base text-navy-600 leading-relaxed">
-              Lahore Property Hub was created to eliminate fake advertisements, hidden commissions, and endless phone loops. We connect buyers, tenants, owners, and licensed realtors across Lahore directly via WhatsApp.
+              Property in Lahore was created to eliminate fake advertisements, hidden commissions, and endless phone loops. We connect buyers, tenants, owners, and licensed realtors across Lahore directly via WhatsApp.
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export default function AboutPage() {
             <div className="max-w-2xl space-y-3">
               <h2 className="text-2xl font-black text-navy-950">Our Verification & Quality Standards</h2>
               <p className="text-xs text-navy-600 leading-relaxed">
-                We know how frustrating outdated or duplicated real estate advertisements are. That is why Lahore Property Hub implements automated anti-spam checks and manual editorial approval on every single listing.
+                We know how frustrating outdated or duplicated real estate advertisements are. That is why Property in Lahore implements automated anti-spam checks and manual editorial approval on every single listing.
               </p>
             </div>
 

@@ -6,14 +6,14 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Renting a House in Lahore: Tenant Agreement & Security Checklist | Lahore Property Hub',
+  title: 'Renting a House in Lahore: Tenant Agreement & Security Checklist | Property in Lahore',
   description:
     'Essential guide to renting a house in Lahore: Punjab Rented Premises Act 2009 compliance, 2-month security deposit norms, police tenant registration, and utility meter checks.',
   alternates: {
     canonical: `${siteConfig.url}/guides/lahore-house-rent-agreement-guide`,
   },
   openGraph: {
-    title: 'Renting a House in Lahore: Tenant Agreement & Security Checklist | Lahore Property Hub',
+    title: 'Renting a House in Lahore: Tenant Agreement & Security Checklist | Property in Lahore',
     description:
       'Essential guide to renting a house in Lahore: Punjab Rented Premises Act 2009 compliance, 2-month security deposit norms, police tenant registration, and utility meter checks.',
     url: `${siteConfig.url}/guides/lahore-house-rent-agreement-guide`,

@@ -1,14 +1,20 @@
 import { AreaItem, CategoryItem } from '@/types';
 
 export const siteConfig = {
-  name: 'Lahore Property Hub',
+  name: 'Property in Lahore',
   brandName: 'Property in Lahore',
   description:
     'Find houses, apartments, plots, shops, and commercial properties for rent or sale in Lahore. Explore Bahria Town, Johar Town, DHA, Gulberg, and other areas.',
-  url:
-    process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_SITE_URL
-      ? process.env.NEXT_PUBLIC_SITE_URL
-      : 'https://www.propertyinlahore.online',
+  url: (() => {
+    if (process.env.NODE_ENV === 'development') {
+      return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    }
+    const configured = process.env.NEXT_PUBLIC_SITE_URL;
+    if (configured && !configured.includes('localhost') && configured.startsWith('http')) {
+      return configured;
+    }
+    return 'https://www.propertyinlahore.online';
+  })(),
   apiUrl: process.env.NEXT_PUBLIC_API_URL || 'https://lahore-property-hub-backend.onrender.com/api',
   logo: '/logo.jpg',
   city: 'Lahore',

@@ -33,7 +33,7 @@ export interface AppConfig {
 }
 
 export const config: AppConfig = {
-  appName: 'Lahore Property Hub API',
+  appName: 'Property in Lahore API',
   port: parseInt(process.env.PORT || '5000', 10),
   nodeEnv: (process.env.NODE_ENV as AppConfig['nodeEnv']) || 'development',
   frontendUrl: process.env.FRONTEND_URL || 'https://www.propertyinlahore.online',
@@ -55,8 +55,8 @@ export const config: AppConfig = {
     secure: process.env.SMTP_SECURE === 'true',
     user: process.env.SMTP_USER || '',
     pass: process.env.SMTP_PASS || '',
-    from: process.env.SMTP_FROM || 'Lahore Property Hub <noreply@lahorepropertyhub.com>',
-    adminEmail: process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@lahorepropertyhub.com',
+    from: process.env.SMTP_FROM || 'Property in Lahore <noreply@propertyinlahore.online>',
+    adminEmail: process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@propertyinlahore.online',
   },
 };
 

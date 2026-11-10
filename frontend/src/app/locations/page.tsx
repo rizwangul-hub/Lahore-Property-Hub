@@ -8,14 +8,14 @@ import { AreaCard } from '@/components/property/AreaCard';
 import { LAHORE_AREAS, siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'All Property Locations & Societies in Lahore | Lahore Property Hub',
+  title: 'All Property Locations & Societies in Lahore | Property in Lahore',
   description:
     'Explore verified real estate across all major Lahore housing societies and localities: Bahria Town, DHA Defence, Johar Town, Gulberg, Model Town, Lake City, and more.',
   alternates: {
     canonical: `${siteConfig.url}/locations`,
   },
   openGraph: {
-    title: 'All Property Locations & Societies in Lahore | Lahore Property Hub',
+    title: 'All Property Locations & Societies in Lahore | Property in Lahore',
     description:
       'Explore verified real estate across all major Lahore housing societies and localities: Bahria Town, DHA Defence, Johar Town, Gulberg, Model Town, Lake City, and more.',
     url: `${siteConfig.url}/locations`,

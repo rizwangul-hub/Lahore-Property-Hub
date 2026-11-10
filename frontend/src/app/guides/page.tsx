@@ -6,14 +6,14 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Lahore Real Estate Guides & Legal Insights | Lahore Property Hub',
+  title: 'Lahore Real Estate Guides & Legal Insights | Property in Lahore',
   description:
     'Comprehensive Lahore property guides: document verification, registry vs transfer letter, tenancy contract bylaws, and Marla/Kanal plot dimension calculators.',
   alternates: {
     canonical: `${siteConfig.url}/guides`,
   },
   openGraph: {
-    title: 'Lahore Real Estate Guides & Legal Insights | Lahore Property Hub',
+    title: 'Lahore Real Estate Guides & Legal Insights | Property in Lahore',
     description:
       'Comprehensive Lahore property guides: document verification, registry vs transfer letter, tenancy contract bylaws, and Marla/Kanal plot dimension calculators.',
     url: `${siteConfig.url}/guides`,

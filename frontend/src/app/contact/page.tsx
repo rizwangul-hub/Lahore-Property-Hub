@@ -6,16 +6,16 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Lahore Property Hub Support & Inquiries',
+  title: 'Contact Us | Property in Lahore Support & Inquiries',
   description:
-    'Get in touch with the Lahore Property Hub team. Reach our Lahore office via WhatsApp, email, or telephone for property listing assistance, dealer verification, and inquiries.',
+    'Get in touch with the Property in Lahore team. Reach our Lahore office via WhatsApp, email, or telephone for property listing assistance, dealer verification, and inquiries.',
   alternates: {
     canonical: `${siteConfig.url}/contact`,
   },
   openGraph: {
-    title: 'Contact Us | Lahore Property Hub Support & Inquiries',
+    title: 'Contact Us | Property in Lahore Support & Inquiries',
     description:
-      'Get in touch with the Lahore Property Hub team. Reach our Lahore office via WhatsApp, email, or telephone for property listing assistance, dealer verification, and inquiries.',
+      'Get in touch with the Property in Lahore team. Reach our Lahore office via WhatsApp, email, or telephone for property listing assistance, dealer verification, and inquiries.',
     url: `${siteConfig.url}/contact`,
     siteName: siteConfig.brandName,
     locale: 'en_PK',
@@ -28,8 +28,8 @@ export default function ContactPage() {
   const contactSchema = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
-    name: 'Contact Lahore Property Hub',
-    description: 'Customer support, listing inquiries, and dealer partnerships for Lahore Property Hub.',
+    name: 'Contact Property in Lahore',
+    description: 'Customer support, listing inquiries, and dealer partnerships for Property in Lahore.',
     url: `${siteConfig.url}/contact`,
     mainEntity: {
       '@type': 'RealEstateAgent',
@@ -78,7 +78,7 @@ export default function ContactPage() {
               We are here to assist you
             </span>
             <h1 className="mt-1 text-3xl sm:text-4xl font-black tracking-tight text-navy-950">
-              Contact Lahore Property Hub
+              Contact Property in Lahore
             </h1>
             <p className="mt-2 text-sm text-navy-600 leading-relaxed">
               Have questions regarding listing your property, dealer verification, or navigating societies in Lahore? Reach out through our official channels.

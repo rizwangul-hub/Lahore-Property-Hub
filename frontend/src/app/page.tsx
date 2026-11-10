@@ -11,14 +11,14 @@ import { PostPropertyCTA } from '@/components/home/PostPropertyCTA';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Lahore Property Hub | Find Houses, Plots, Apartments & Commercial Properties',
+  title: 'Property in Lahore | Find Houses, Plots, Apartments & Commercial Properties',
   description:
     'Find houses, apartments, plots, shops, and commercial properties for rent or sale in Lahore. Explore Bahria Town, Johar Town, DHA, Gulberg, and other areas.',
   alternates: {
     canonical: siteConfig.url,
   },
   openGraph: {
-    title: 'Lahore Property Hub | Find Houses, Plots, Apartments & Commercial Properties',
+    title: 'Property in Lahore | Find Houses, Plots, Apartments & Commercial Properties',
     description:
       'Find houses, apartments, plots, shops, and commercial properties for rent or sale in Lahore. Explore Bahria Town, Johar Town, DHA, Gulberg, and other areas.',
     url: siteConfig.url,

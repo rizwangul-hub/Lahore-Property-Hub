@@ -6,14 +6,14 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: '5 Marla vs 10 Marla vs 1 Kanal: Lahore Plot & House Size Comparison | Lahore Property Hub',
+  title: '5 Marla vs 10 Marla vs 1 Kanal: Lahore Plot & House Size Comparison | Property in Lahore',
   description:
     'Complete guide to land measurement units in Lahore: 225 sq ft vs 272 sq ft Marla standards, covered area benchmarks, room distributions, and society construction setbacks.',
   alternates: {
     canonical: `${siteConfig.url}/guides/marla-to-kanal-lahore-size-guide`,
   },
   openGraph: {
-    title: '5 Marla vs 10 Marla vs 1 Kanal: Lahore Plot & House Size Comparison | Lahore Property Hub',
+    title: '5 Marla vs 10 Marla vs 1 Kanal: Lahore Plot & House Size Comparison | Property in Lahore',
     description:
       'Complete guide to land measurement units in Lahore: 225 sq ft vs 272 sq ft Marla standards, covered area benchmarks, room distributions, and society construction setbacks.',
     url: `${siteConfig.url}/guides/marla-to-kanal-lahore-size-guide`,

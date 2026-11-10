@@ -74,12 +74,12 @@ export async function generateMetadata({
 
   if (!cat) {
     return {
-      title: 'Property Category | Lahore Property Hub',
+      title: 'Property Category | Property in Lahore',
       description: 'Explore properties across Lahore by category.',
     };
   }
 
-  const title = `${cat.title} | Lahore Property Hub`;
+  const title = `${cat.title} | Property in Lahore`;
   const canonicalUrl = `${siteConfig.url}/properties/category/${category.toLowerCase()}`;
 
   return {

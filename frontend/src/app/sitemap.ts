@@ -3,7 +3,11 @@ import { siteConfig, LAHORE_AREAS } from '@/config/site';
 import { fetchProperties } from '@/lib/api';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = siteConfig.url.replace(/\/$/, '');
+  const rawBase = siteConfig.url.replace(/\/$/, '');
+  const baseUrl =
+    rawBase.includes('localhost') && process.env.NODE_ENV !== 'development'
+      ? 'https://www.propertyinlahore.online'
+      : rawBase;
 
   // 1. Core Static Landing Pages
   const staticRoutes: MetadataRoute.Sitemap = [

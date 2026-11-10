@@ -6,14 +6,14 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Lahore Property Buying Guide: Verification & Transfer Bylaws | Lahore Property Hub',
+  title: 'Lahore Property Buying Guide: Verification & Transfer Bylaws | Property in Lahore',
   description:
     'Comprehensive step-by-step checklist on buying property in Lahore: verifying Fard Malkiat, NDC certificate, DHA/LDA transfer procedures, and tax payments.',
   alternates: {
     canonical: `${siteConfig.url}/guides/lahore-property-buying-guide`,
   },
   openGraph: {
-    title: 'Lahore Property Buying Guide: Verification & Transfer Bylaws | Lahore Property Hub',
+    title: 'Lahore Property Buying Guide: Verification & Transfer Bylaws | Property in Lahore',
     description:
       'Comprehensive step-by-step checklist on buying property in Lahore: verifying Fard Malkiat, NDC certificate, DHA/LDA transfer procedures, and tax payments.',
     url: `${siteConfig.url}/guides/lahore-property-buying-guide`,
@@ -75,7 +75,7 @@ export default function BuyingGuidePage() {
                 Lahore Property Buying Guide: Verification, Documents & Transfer Letters
               </h1>
               <p className="text-xs sm:text-sm text-navy-500">
-                Published by Lahore Property Hub Research Team &bull; Updated for 2026 Tax Regulations
+                Published by Property in Lahore Research Team &bull; Updated for 2026 Tax Regulations
               </p>
             </div>
 

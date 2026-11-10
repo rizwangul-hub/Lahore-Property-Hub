@@ -6,9 +6,9 @@ import { Container } from '@/components/common/Container';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Lahore Property Hub',
+  title: 'Terms & Conditions | Property in Lahore',
   description:
-    'Review the Terms & Conditions of Lahore Property Hub. Clear rules and guidelines for posting property listings and browsing real estate in Lahore.',
+    'Review the Terms & Conditions of Property in Lahore. Clear rules and guidelines for posting property listings and browsing real estate in Lahore.',
   alternates: {
     canonical: `${siteConfig.url}/terms`,
   },
@@ -37,17 +37,17 @@ export default function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="mt-2 text-sm text-navy-600">
-            Last updated: {new Date().getFullYear()} &bull; Lahore Property Hub
+            Last updated: {new Date().getFullYear()} &bull; Property in Lahore
           </p>
 
           <div className="mt-8 space-y-6 text-sm text-navy-700 leading-relaxed">
             <p>
-              By accessing and using Lahore Property Hub, you agree to comply with and be bound by the
+              By accessing and using Property in Lahore, you agree to comply with and be bound by the
               following terms and conditions governing our real estate platform.
             </p>
             <h2 className="text-lg font-bold text-navy-950">1. Marketplace Platform Role</h2>
             <p>
-              Lahore Property Hub provides an advertising and discovery platform connecting property
+              Property in Lahore provides an advertising and discovery platform connecting property
               buyers, sellers, tenants, and dealers in Lahore, Pakistan. We do not act as an escrow agent
               or certify real property titles.
             </p>

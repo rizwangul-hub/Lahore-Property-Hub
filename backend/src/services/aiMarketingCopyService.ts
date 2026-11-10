@@ -181,7 +181,7 @@ export async function generateAiWebsiteMarketingCopy(
 
   // Attempt AI generation if key is present
   if (geminiKey || openaiKey) {
-    const prompt = `You are a professional real estate digital marketer for Lahore Property Hub (website: ${websiteUrl}).
+    const prompt = `You are a professional real estate digital marketer for Property in Lahore (website: ${websiteUrl}).
 Write a high-converting Facebook Group post promoting the website.
 Target Audience: Property owners, landlords, buyers, or dealers in ${targetArea}, Lahore.
 Theme: ${theme.replace(/_/g, ' ')}.

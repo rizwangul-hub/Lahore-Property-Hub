@@ -26,7 +26,7 @@ export function transformPropertyPhotoUrl(
   const {
     aspectRatio = 'LANDSCAPE_1200',
     watermark = true,
-    watermarkText = 'Lahore Property Hub | Verified',
+    watermarkText = 'Property in Lahore | Verified',
   } = options;
 
   // Split URL at "/upload/"
