@@ -19,6 +19,7 @@ export interface IMarketingDraft extends Document {
   propertyReferenceId?: string;
   groupId: mongoose.Types.ObjectId;
   groupName: string;
+  groupUrl?: string;
   targetArea: string;
   language: DraftLanguage;
   theme?: string;
@@ -72,6 +73,11 @@ const MarketingDraftSchema = new Schema<IMarketingDraft>(
       type: String,
       required: true,
       trim: true,
+    },
+    groupUrl: {
+      type: String,
+      trim: true,
+      default: '',
     },
     targetArea: {
       type: String,

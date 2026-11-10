@@ -50,6 +50,7 @@ export interface MarketingDraftItem {
   propertyReferenceId?: string;
   groupId: string;
   groupName: string;
+  groupUrl?: string;
   targetArea: string;
   language: PreferredLanguage;
   theme?: string;

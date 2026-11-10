@@ -302,13 +302,14 @@ export default function PublishingWorkspacePage() {
                   )}
 
                   <a
-                    href={draft.targetUrl}
+                    href={draft.groupUrl || 'https://www.facebook.com/groups'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-1 px-3 py-2 rounded-xl bg-navy-950 hover:bg-navy-900 text-brand-400 text-xs font-bold transition text-center"
+                    title={draft.groupUrl ? `Open ${draft.groupName}` : 'Open Facebook Groups'}
                   >
                     <ExternalLink className="h-3.5 w-3.5" />
-                    <span>3. Group</span>
+                    <span>3. Open Group</span>
                   </a>
                 </div>
 

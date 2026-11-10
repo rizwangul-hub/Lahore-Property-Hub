@@ -176,10 +176,11 @@ export default function PublishConfirmationModal({
               )}
 
               <a
-                href={draft.targetUrl}
+                href={draft.groupUrl || 'https://www.facebook.com/groups'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center justify-center p-3 rounded-xl bg-navy-950 text-brand-400 hover:bg-navy-900 text-xs font-bold transition shadow-subtle text-center gap-1.5"
+                title={draft.groupUrl ? `Open ${draft.groupName}` : 'Open Facebook Groups'}
               >
                 <ExternalLink className="h-4 w-4" />
                 <span className="text-[11px]">4. Open Group</span>

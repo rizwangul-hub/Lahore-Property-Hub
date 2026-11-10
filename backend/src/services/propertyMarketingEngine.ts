@@ -217,6 +217,7 @@ export async function processNewApprovedPropertyMarketing(
       propertyReferenceId: property.referenceId,
       groupId: group._id,
       groupName: group.name,
+      groupUrl: group.groupUrl,
       targetArea: group.area,
       language: group.preferredLanguage || 'ROMAN_URDU',
       theme: 'PROPERTY_SPOTLIGHT',

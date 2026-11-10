@@ -317,10 +317,16 @@ export const getMarketingDrafts = async (
     const limitNum = Math.min(100, Math.max(1, parseInt(String(limit), 10) || 20));
     const skip = (pageNum - 1) * limitNum;
 
-    const [drafts, total] = await Promise.all([
-      MarketingDraft.find(query).sort({ createdAt: -1 }).skip(skip).limit(limitNum).lean(),
+    const [rawDrafts, total] = await Promise.all([
+      MarketingDraft.find(query).populate('groupId', 'groupUrl').sort({ createdAt: -1 }).skip(skip).limit(limitNum).lean(),
       MarketingDraft.countDocuments(query),
     ]);
+
+    const drafts = rawDrafts.map((d: any) => ({
+      ...d,
+      groupUrl: d.groupUrl || (d.groupId && typeof d.groupId === 'object' ? d.groupId.groupUrl : '') || 'https://www.facebook.com/groups',
+      groupId: d.groupId && typeof d.groupId === 'object' ? d.groupId._id : d.groupId,
+    }));
 
     res.status(200).json({
       success: true,
@@ -349,10 +355,16 @@ export const getMarketingDraftById = async (
       return;
     }
 
-    const draft = await MarketingDraft.findById(id).lean();
+    const draft: any = await MarketingDraft.findById(id).populate('groupId', 'groupUrl').lean();
     if (!draft) {
       res.status(404).json({ success: false, message: 'Draft not found' });
       return;
+    }
+
+    const cleanGroupUrl = draft.groupUrl || (draft.groupId && typeof draft.groupId === 'object' ? draft.groupId.groupUrl : '') || 'https://www.facebook.com/groups';
+    draft.groupUrl = cleanGroupUrl;
+    if (draft.groupId && typeof draft.groupId === 'object') {
+      draft.groupId = draft.groupId._id;
     }
 
     // Check current property status if property draft

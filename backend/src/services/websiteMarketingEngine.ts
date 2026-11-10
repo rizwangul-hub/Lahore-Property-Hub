@@ -220,6 +220,7 @@ export async function generateDailyWebsiteCampaigns(): Promise<{
       campaignType: 'WEBSITE_MARKETING',
       groupId: group._id,
       groupName: group.name,
+      groupUrl: group.groupUrl,
       targetArea: group.area,
       language: group.preferredLanguage || 'ROMAN_URDU',
       theme: currentTheme,
