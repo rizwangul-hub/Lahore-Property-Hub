@@ -203,8 +203,14 @@ export async function processNewApprovedPropertyMarketing(
       { aiTone: settings.preferredAiTone }
     );
 
-    // 8.1 Prepare transformed & watermarked Cloudinary assets
-    const preparedAssets = preparePropertyMarketingAssets(imageUrls);
+    // 8.1 Prepare transformed branded marketing poster assets with Price & Area
+    const priceBadge = `${formatPricePK(property.price)} (${property.purpose === 'RENT' ? '/Mo' : 'Demand'})`;
+    const areaBadge = `${property.areaSize} ${property.areaUnit || 'Marla'}`;
+
+    const preparedAssets = preparePropertyMarketingAssets(imageUrls, {
+      priceText: priceBadge,
+      areaText: areaBadge,
+    });
     const finalImageUrls = preparedAssets.primaryUrls.length > 0 ? preparedAssets.primaryUrls : imageUrls;
 
     // 9. Create draft with APPROVED status (Fast 1-click publishing) or PENDING_APPROVAL

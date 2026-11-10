@@ -4,16 +4,20 @@ export interface ImageTransformationOptions {
   aspectRatio?: 'SQUARE_1080' | 'LANDSCAPE_1200' | 'ORIGINAL';
   watermark?: boolean;
   watermarkText?: string;
+  badgeText?: string;
+  priceBadge?: string;
+  areaBadge?: string;
   quality?: 'auto' | 'high';
 }
 
 /**
- * Transforms an existing Cloudinary property photo URL without altering or overwriting the original file.
+ * Transforms an existing Cloudinary property photo URL into a premium marketing poster.
  * Applies Cloudinary on-the-fly transformations:
  * - Square 1080x1080 for Facebook feed posts
  * - Landscape 1200x630 for Facebook links/shares
+ * - Top-left official badge: "Property in Lahore"
+ * - Bottom banner: Price and Area specs
  * - Automatic WebP/JPEG format negotiation and compression (f_auto,q_auto)
- * - Optional discrete corner watermark badge ("Lahore Property Hub")
  */
 export function transformPropertyPhotoUrl(
   originalUrl: string,
@@ -24,9 +28,11 @@ export function transformPropertyPhotoUrl(
   }
 
   const {
-    aspectRatio = 'LANDSCAPE_1200',
+    aspectRatio = 'SQUARE_1080',
     watermark = true,
-    watermarkText = 'Property in Lahore | Verified',
+    watermarkText = 'Property in Lahore',
+    priceBadge,
+    areaBadge,
   } = options;
 
   // Split URL at "/upload/"
@@ -43,20 +49,34 @@ export function transformPropertyPhotoUrl(
 
   const transformParts: string[] = [];
 
-  // Dimensions & Crop
+  // 1. Dimensions & Crop (1080x1080 square poster default)
   if (aspectRatio === 'SQUARE_1080') {
     transformParts.push('c_fill,w_1080,h_1080,g_auto');
   } else if (aspectRatio === 'LANDSCAPE_1200') {
     transformParts.push('c_fill,w_1200,h_630,g_auto');
   }
 
-  // Quality & Format Optimization
+  // 2. Format & Quality
   transformParts.push('f_auto,q_auto:good');
 
-  // Optional Watermark Overlay
+  // 3. Top-Left Premium Brand Ribbon / Badge: "Property in Lahore"
   if (watermark) {
-    const safeText = encodeURIComponent(watermarkText);
-    transformParts.push(`l_text:Arial_22_bold:${safeText},co_rgb:ffffff,o_85,g_south_east,x_25,y_25`);
+    const brandLabel = encodeURIComponent(watermarkText);
+    transformParts.push(`l_text:Arial_22_bold:${brandLabel},co_rgb:ffffff,b_rgb:061a3a,o_90,g_north_west,x_35,y_35`);
+
+    // 4. Bottom Specs / Price Banner (if provided)
+    const detailParts: string[] = [];
+    if (priceBadge) detailParts.push(priceBadge);
+    if (areaBadge) detailParts.push(areaBadge);
+
+    if (detailParts.length > 0) {
+      const specsText = encodeURIComponent(detailParts.join(' | '));
+      transformParts.push(`l_text:Arial_24_bold:${specsText},co_rgb:ffffff,b_rgb:059669,o_95,g_south_west,x_35,y_35`);
+    } else {
+      // Verified Badge
+      const verifiedText = encodeURIComponent('Verified Listing | propertyinlahore.online');
+      transformParts.push(`l_text:Arial_22_bold:${verifiedText},co_rgb:ffffff,b_rgb:061a3a,o_85,g_south_west,x_35,y_35`);
+    }
   }
 
   const transformationString = transformParts.join('/');
@@ -99,7 +119,8 @@ export function getBrandedWebsiteBanner(
  * Includes square format for mobile feeds and landscape format for wide link cards.
  */
 export function preparePropertyMarketingAssets(
-  rawImageUrls: string[]
+  rawImageUrls: string[],
+  meta?: { priceText?: string; areaText?: string }
 ): { squareUrls: string[]; landscapeUrls: string[]; primaryUrls: string[] } {
   if (!rawImageUrls || rawImageUrls.length === 0) {
     return {
@@ -112,16 +133,26 @@ export function preparePropertyMarketingAssets(
   }
 
   const squareUrls = rawImageUrls.map((url) =>
-    transformPropertyPhotoUrl(url, { aspectRatio: 'SQUARE_1080', watermark: true })
+    transformPropertyPhotoUrl(url, {
+      aspectRatio: 'SQUARE_1080',
+      watermark: true,
+      priceBadge: meta?.priceText,
+      areaBadge: meta?.areaText,
+    })
   );
 
   const landscapeUrls = rawImageUrls.map((url) =>
-    transformPropertyPhotoUrl(url, { aspectRatio: 'LANDSCAPE_1200', watermark: true })
+    transformPropertyPhotoUrl(url, {
+      aspectRatio: 'LANDSCAPE_1200',
+      watermark: true,
+      priceBadge: meta?.priceText,
+      areaBadge: meta?.areaText,
+    })
   );
 
   return {
     squareUrls,
     landscapeUrls,
-    primaryUrls: landscapeUrls,
+    primaryUrls: squareUrls, // Primary is now the high-impact Square Poster for mobile Facebook feeds!
   };
 }
