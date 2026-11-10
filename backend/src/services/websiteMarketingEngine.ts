@@ -197,7 +197,8 @@ export async function generateDailyWebsiteCampaigns(): Promise<{
       { aiTone: settings.preferredAiTone }
     );
 
-    const bannerImage = getBrandedWebsiteBanner(currentTheme, group.area);
+    // Alternates between poster1.png and poster2.png for each group/day
+    const bannerImage = getBrandedWebsiteBanner(currentTheme, group.area, drafts.length + dayOfYear);
 
     // 4. Create Draft in APPROVED status (Fast 1-click publishing) or PENDING_APPROVAL
     const initialStatus = settings.autoApproveDrafts !== false ? 'APPROVED' : 'PENDING_APPROVAL';

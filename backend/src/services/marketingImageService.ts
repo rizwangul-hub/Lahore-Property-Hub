@@ -85,13 +85,27 @@ export function transformPropertyPhotoUrl(
 
 /**
  * Builds high-converting branded website promotional banners for Engine 1.
- * Matches theme to curated, high-resolution architectural backdrops with official brand overlays.
+ * Rotates between your custom branded posters (/poster1.png, /poster2.png)
+ * and theme-based architectural backdrops.
  */
 export function getBrandedWebsiteBanner(
   theme: string,
-  targetArea?: string
+  targetArea?: string,
+  index = 0
 ): string {
-  const areaLabel = targetArea && targetArea !== 'All Lahore' ? targetArea : 'Lahore';
+  const websiteBase = (config.frontendUrl || 'https://www.propertyinlahore.online').replace(/\/$/, '');
+
+  // Custom User Posters in frontend/public:
+  const CUSTOM_POSTERS = [
+    `${websiteBase}/poster1.png`,
+    `${websiteBase}/poster2.png`,
+  ];
+
+  // Alternates between poster1.png and poster2.png based on index / day
+  if (CUSTOM_POSTERS.length > 0) {
+    const posterIndex = Math.abs(index) % CUSTOM_POSTERS.length;
+    return CUSTOM_POSTERS[posterIndex];
+  }
 
   const THEME_BANNERS: Record<string, string> = {
     FREE_PROPERTY_LISTINGS:
@@ -110,7 +124,7 @@ export function getBrandedWebsiteBanner(
 
   return (
     THEME_BANNERS[theme] ||
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=630&q=80'
+    `${websiteBase}/poster1.png`
   );
 }
 
