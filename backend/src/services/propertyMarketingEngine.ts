@@ -204,7 +204,8 @@ export async function processNewApprovedPropertyMarketing(
     );
 
     // 8.1 Prepare transformed branded marketing poster assets with Price & Area
-    const priceBadge = `${formatPricePK(property.price)} (${property.purpose === 'RENT' ? '/Mo' : 'Demand'})`;
+    const isRent = property.listingType === 'RENT';
+    const priceBadge = `${formatPricePK(property.price)} (${isRent ? '/Mo' : 'Demand'})`;
     const areaBadge = `${property.areaSize} ${property.areaUnit || 'Marla'}`;
 
     const preparedAssets = preparePropertyMarketingAssets(imageUrls, {
