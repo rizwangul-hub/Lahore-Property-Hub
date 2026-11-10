@@ -36,7 +36,7 @@ export default function PublishConfirmationModal({
   if (!isOpen || !draft) return null;
 
   const [facebookPostUrl, setFacebookPostUrl] = useState('');
-  const [confirmedManualPost, setConfirmedManualPost] = useState(false);
+  const [confirmedManualPost, setConfirmedManualPost] = useState(true);
   const [publicationDate, setPublicationDate] = useState(
     new Date().toISOString().slice(0, 16)
   );
@@ -74,20 +74,10 @@ export default function PublishConfirmationModal({
     e.preventDefault();
     setError(null);
 
-    if (!facebookPostUrl.trim() || !/^https?:\/\/.+/i.test(facebookPostUrl.trim())) {
-      setError('Please provide the live Facebook post URL to confirm publication.');
-      return;
-    }
-
-    if (!confirmedManualPost) {
-      setError('You must confirm that this post was manually published by checking the box.');
-      return;
-    }
-
     setSubmitting(true);
     try {
       const res = await confirmDraftPublished(draft._id, {
-        facebookPostUrl: facebookPostUrl.trim(),
+        facebookPostUrl: facebookPostUrl.trim() || undefined,
         notes: notes.trim(),
         publicationDate: new Date(publicationDate).toISOString(),
       });
@@ -197,21 +187,20 @@ export default function PublishConfirmationModal({
             </div>
           </div>
 
-          {/* Facebook Post URL Input */}
+          {/* Facebook Post URL Input (Optional) */}
           <div>
             <label className="block text-xs font-bold text-navy-800 mb-1">
-              Confirmed Facebook Post URL <span className="text-red-500">*</span>
+              Confirmed Facebook Post URL <span className="text-navy-400 font-normal">(Optional)</span>
             </label>
             <input
               type="url"
-              required
               value={facebookPostUrl}
               onChange={(e) => setFacebookPostUrl(e.target.value)}
-              placeholder="https://facebook.com/groups/.../posts/123456789"
+              placeholder="Optional: https://facebook.com/groups/... (leave empty for 1-click confirm)"
               className="w-full px-3.5 py-2.5 rounded-xl border border-navy-200 text-xs text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
             />
             <span className="text-[11px] text-navy-400 mt-1 block">
-              Paste the permanent URL of the post after publishing in Facebook.
+              Optional: Leave empty to instantly record publication and activate group cooldown.
             </span>
           </div>
 

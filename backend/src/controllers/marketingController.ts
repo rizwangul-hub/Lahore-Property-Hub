@@ -720,17 +720,10 @@ export const confirmPublished = async (
       return;
     }
 
-    if (
-      !facebookPostUrl ||
-      typeof facebookPostUrl !== 'string' ||
-      !facebookPostUrl.trim() ||
-      !/^https?:\/\/.+/i.test(facebookPostUrl.trim())
-    ) {
-      res.status(400).json({
-        success: false,
-        message: 'A valid Facebook post URL is required to confirm publication.',
-      });
-      return;
+    // Clean optional Facebook post URL (if provided, must be valid http, or fallback to auto-generated group marker)
+    let cleanPostUrl = typeof facebookPostUrl === 'string' ? facebookPostUrl.trim() : '';
+    if (cleanPostUrl && !/^https?:\/\/.+/i.test(cleanPostUrl)) {
+      cleanPostUrl = '';
     }
 
     const draft = await MarketingDraft.findById(id);
@@ -771,7 +764,7 @@ export const confirmPublished = async (
 
     draft.status = 'PUBLISHED';
     draft.publishedAt = now;
-    draft.facebookPostUrl = typeof facebookPostUrl === 'string' ? facebookPostUrl.trim() : '';
+    draft.facebookPostUrl = cleanPostUrl || `https://facebook.com/groups/${draft.groupId}`;
     await draft.save();
 
     // Update separate cooldown on FacebookGroup

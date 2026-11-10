@@ -213,7 +213,9 @@ export async function generateDailyWebsiteCampaigns(): Promise<{
 
     const bannerImage = getBrandedWebsiteBanner(currentTheme, group.area);
 
-    // 4. Create Draft in PENDING_APPROVAL status
+    // 4. Create Draft in APPROVED status (Fast 1-click publishing) or PENDING_APPROVAL
+    const initialStatus = settings.autoApproveDrafts !== false ? 'APPROVED' : 'PENDING_APPROVAL';
+
     const draft = await MarketingDraft.create({
       campaignType: 'WEBSITE_MARKETING',
       groupId: group._id,
@@ -226,7 +228,7 @@ export async function generateDailyWebsiteCampaigns(): Promise<{
       hashtags: copy.hashtags,
       imageUrls: [bannerImage],
       targetUrl: `${settings.officialWebsiteUrl}/post-property?utm_source=facebook&utm_medium=group&utm_campaign=${currentTheme.toLowerCase()}`,
-      status: 'PENDING_APPROVAL',
+      status: initialStatus,
       idempotencyKey,
       scheduledDate: now,
     });

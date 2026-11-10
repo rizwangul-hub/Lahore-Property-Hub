@@ -37,10 +37,10 @@ const router = Router();
 // Dedicated rate limiter for admin login to prevent brute force
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // Max 10 attempts
+  max: 50, // Increased to 50 attempts to avoid accidental lockout
   message: {
     success: false,
-    message: 'Too many administrative login attempts. Please wait 15 minutes before trying again.',
+    message: 'Too many administrative login attempts. Please wait a few minutes before trying again.',
   },
   standardHeaders: true,
   legacyHeaders: false,

@@ -207,7 +207,9 @@ export async function processNewApprovedPropertyMarketing(
     const preparedAssets = preparePropertyMarketingAssets(imageUrls);
     const finalImageUrls = preparedAssets.primaryUrls.length > 0 ? preparedAssets.primaryUrls : imageUrls;
 
-    // 9. Create draft with PENDING_APPROVAL status
+    // 9. Create draft with APPROVED status (Fast 1-click publishing) or PENDING_APPROVAL
+    const initialStatus = settings?.autoApproveDrafts !== false ? 'APPROVED' : 'PENDING_APPROVAL';
+
     const draft = await MarketingDraft.create({
       campaignType: 'PROPERTY_MARKETING',
       propertyId: property._id,
@@ -223,7 +225,7 @@ export async function processNewApprovedPropertyMarketing(
       hashtags: copy.hashtags,
       imageUrls: finalImageUrls,
       targetUrl: destinationUrl,
-      status: 'PENDING_APPROVAL',
+      status: initialStatus,
       idempotencyKey,
       scheduledDate: now,
     });

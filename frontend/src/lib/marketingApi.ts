@@ -309,7 +309,7 @@ export const skipMarketingDraft = async (
 // 4. PUBLISHING CONFIRMATION
 export const confirmDraftPublished = async (
   id: string,
-  payload: { facebookPostUrl: string; notes?: string; publicationDate?: string }
+  payload: { facebookPostUrl?: string; notes?: string; publicationDate?: string }
 ): Promise<MarketingApiResponse<{ draft: MarketingDraftItem; history: PostingHistoryItem }>> => {
   return safeFetch<{ draft: MarketingDraftItem; history: PostingHistoryItem }>(
     `${API_BASE_URL}/marketing/drafts/${id}/confirm-published`,

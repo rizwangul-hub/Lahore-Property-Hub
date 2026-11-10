@@ -47,7 +47,7 @@ export const config: AppConfig = {
   },
   rateLimit: {
     windowMs: 15 * 60 * 1000, // 15 minutes
-    maxRequests: 100, // Limit each IP to 100 requests per windowMs
+    maxRequests: 300, // Limit each IP to 300 requests per windowMs (prevents accidental 429 during active administration)
   },
   smtp: {
     host: process.env.SMTP_HOST || '',

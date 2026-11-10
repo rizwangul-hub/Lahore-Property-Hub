@@ -12,6 +12,7 @@ export interface IMarketingSettings extends Document {
   languagePreferences: string[];
   defaultBannerUrls: string[];
   preferredAiTone: 'PERSUASIVE' | 'PROFESSIONAL' | 'URGENT';
+  autoApproveDrafts: boolean;
   updatedBy?: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -78,6 +79,10 @@ const MarketingSettingsSchema = new Schema<IMarketingSettings>(
       type: String,
       enum: ['PERSUASIVE', 'PROFESSIONAL', 'URGENT'],
       default: 'PERSUASIVE',
+    },
+    autoApproveDrafts: {
+      type: Boolean,
+      default: true,
     },
     updatedBy: {
       type: Schema.Types.ObjectId,
