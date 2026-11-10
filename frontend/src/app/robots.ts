@@ -16,7 +16,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/admin',
           '/admin/*',
-          '/post-property',
           '/api/*',
         ],
       },
