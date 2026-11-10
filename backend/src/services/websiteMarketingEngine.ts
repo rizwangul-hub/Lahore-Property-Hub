@@ -70,40 +70,33 @@ export function buildWebsiteMarketingCopy(
     switch (theme) {
       case 'FREE_PROPERTY_LISTINGS':
         return {
-          headline: `🏡 Selling or Renting Out Property in ${targetArea}? List It Free!`,
-          caption: `🏡 Selling or Renting Out Property in ${targetArea}?\n\nSkip the broker commission and endless phone loops! Publish your house, plot, or commercial space on Property in Lahore — Lahore's premier dedicated real estate marketplace.\n\n✨ Why Advertise With Us?\n• 100% Free Property Listings\n• Direct WhatsApp Inquiries Straight to Your Phone\n• Dedicated Coverage Across ${targetArea} & All Prime Sectors\n• Admin-Moderated Marketplace With Genuine Buyers\n\n👉 Post your free listing in 2 minutes:\n${destinationUrl}\n\n#LahoreProperty #PropertyInLahore #RealEstateLahore #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#LahoreProperty', '#PropertyInLahore', '#RealEstateLahore', `#${targetArea.replace(/\s+/g, '')}`],
+          headline: `🏡 Property in ${targetArea}: Buy, Sell, Rent & Plots | All-in-One Marketplace!`,
+          caption: `🏡 ${targetArea} & All Lahore Real Estate Hub!\n\nWhether you want to SELL, BUY, RENT OUT, or INVEST in property — Property in Lahore connects you directly with genuine owners, verified buyers, and authorized realtors across Lahore!\n\n📋 Everything Under One Roof:\n• Houses & Portions (Buy / Rent: 3, 5, 10 Marla & 1 Kanal)\n• Residential & Commercial Plots (Direct transfer & files)\n• Luxury Apartments & Flats (Furnished & Unfurnished)\n• Commercial Shops, Plazas & Office Spaces\n• 'Property Wanted' Demands (Post your exact requirement!)\n\n✨ Why Property in Lahore?\n✅ 100% Free Property Advertisement Posting\n✅ Direct WhatsApp Contact — No middleman commission delays\n✅ Admin-Moderated & Clean Marketplace\n✅ High visibility across ${targetArea} & prime Lahore societies\n\n👉 Post your property free or search thousands of verified listings:\n${destinationUrl}\n\n#PropertyInLahore #LahoreRealEstate #HouseForSaleLahore #PlotsInLahore #${targetArea.replace(/\s+/g, '')}`,
+          hashtags: ['#PropertyInLahore', '#LahoreRealEstate', '#HouseForSaleLahore', '#PlotsInLahore', `#${targetArea.replace(/\s+/g, '')}`],
         };
       case 'LANDLORD_RENTAL':
         return {
-          headline: `🔑 Attention Landlords in ${targetArea}: Find Reliable Tenants Fast`,
-          caption: `🔑 Attention Landlords in ${targetArea}: Find Reliable Tenants Fast!\n\nHave a vacant house, upper portion, or luxury apartment? List your rental property on Property in Lahore and connect directly with vetted families looking for rental homes in ${targetArea}.\n\n✨ Key Features:\n• Free Rental Advertisement Posting\n• Zero Broker Intermediary Fees\n• Verified WhatsApp Tenant Inquiries\n\n👉 List your rental property now:\n${destinationUrl}\n\n#LahoreRentals #HouseForRentLahore #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#LahoreRentals', '#HouseForRentLahore', `#${targetArea.replace(/\s+/g, '')}`],
+          headline: `🔑 Looking to Rent or Let in ${targetArea}? Connect Directly!`,
+          caption: `🔑 House, Flat ya Portion Kiraye par Dena ya Lena Hai?\n\nAttention Landlords & Tenants in ${targetArea}!\nProperty in Lahore par direct rental advertisements lagayein aur bina kisi broker commission k deal finalize karein.\n\n🏠 Rental Categories Available:\n• Complete Houses (5, 10 Marla, 1 Kanal)\n• Upper & Lower Portions for Families\n• 1, 2, 3 Bed Apartments & Studios\n• Commercial Offices & Retail Shops\n• Hostels & Shared Living Spaces\n\n✨ Key Advantages:\n✅ Direct Owner-to-Tenant WhatsApp Chat\n✅ Zero Agent Commissions\n✅ Verified Family Inquiries & Fast Tenancy\n\n👉 List your rental property or find a home today:\n${destinationUrl}\n\n#RentInLahore #HouseForRent #FlatsForRent #${targetArea.replace(/\s+/g, '')}`,
+          hashtags: ['#RentInLahore', '#HouseForRent', '#FlatsForRent', `#${targetArea.replace(/\s+/g, '')}`],
         };
       case 'DEALER_PARTNERSHIPS':
         return {
-          headline: `💼 Real Estate Consultants & Dealers Operating in ${targetArea}!`,
-          caption: `💼 Real Estate Consultants & Dealers Operating in ${targetArea}!\n\nExpand your agency's online reach. List your verified inventory of houses, plots, and commercial buildings on Property in Lahore for free.\n\n✨ Benefits for Real Estate Dealers:\n• Showcase your direct inventory to thousands of monthly visitors\n• Receive direct client inquiries straight to your business WhatsApp\n• Clean, verified marketplace with zero duplicate ad clutter\n\n👉 Register and post free listings today:\n${destinationUrl}\n\n#LahoreRealtors #PropertyDealersLahore #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#LahoreRealtors', '#PropertyDealersLahore', `#${targetArea.replace(/\s+/g, '')}`],
+          headline: `💼 Real Estate Agents & Consultants in ${targetArea}: Expand Your Reach!`,
+          caption: `💼 Attention Property Dealers & Real Estate Consultants in ${targetArea}!\n\nApni inventory ko Lahore k hazaron active buyers aur investors tak pohanchayein bilkul FREE!\n\n📈 Grow Your Agency Network:\n• Houses, Villas & Modern Bungalows\n• Commercial High-Rise Buildings & Plazas\n• Society Development Plots & Files (DHA, Bahria, Lake City, etc.)\n• Rental Buildings & High-Yield Investment Portfolios\n\n✨ Realtor Benefits:\n✅ Direct client leads sent straight to your agency WhatsApp\n✅ Unlimited free property listings\n✅ Clean, spam-free platform dedicated only to Lahore\n\n👉 Register and showcase your properties today:\n${destinationUrl}\n\n#LahoreDealers #EstateAgency #PropertyDealersLahore #${targetArea.replace(/\s+/g, '')}`,
+          hashtags: ['#LahoreDealers', '#EstateAgency', '#PropertyDealersLahore', `#${targetArea.replace(/\s+/g, '')}`],
         };
       case 'BUYER_DISCOVERY':
         return {
-          headline: `🔍 Looking to Buy a Verified Property in ${targetArea}?`,
-          caption: `🔍 Looking to Buy a Verified Property in ${targetArea}?\n\nDiscover authentic houses, plots, and apartments on Property in Lahore. Filter by exact location, price, and specs with direct owner WhatsApp contact.\n\n👉 Browse active listings or submit a Property Wanted request:\n${destinationUrl}\n\n#BuyPropertyLahore #LahoreRealEstate #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#BuyPropertyLahore', '#LahoreRealEstate', `#${targetArea.replace(/\s+/g, '')}`],
+          headline: `🔍 Looking to Buy a Verified House, Plot or Flat in ${targetArea}?`,
+          caption: `🔍 Searching for Your Dream Home or Commercial Investment in ${targetArea}?\n\nAvoid fake listings and outdated advertisements! Property in Lahore brings you verified listings with authentic photographs, accurate dimensions, and direct owner contacts.\n\n🎯 Popular Purchase Categories:\n• Brand New & Used Houses (3, 5, 10 Marla, 1 Kanal)\n• Residential Plots with Clear Registry / Transfer Letters\n• Modern Luxury Apartments with Flexible Payment Plans\n• Commercial Shops, Showrooms & Warehouses\n\n💡 Can't find what you need? Post a FREE 'Property Wanted' ad and let sellers contact you!\n\n👉 Explore live verified inventory:\n${destinationUrl}\n\n#BuyPropertyLahore #LahorePlots #PropertyInLahore #${targetArea.replace(/\s+/g, '')}`,
+          hashtags: ['#BuyPropertyLahore', '#LahorePlots', '#PropertyInLahore', `#${targetArea.replace(/\s+/g, '')}`],
         };
-      case 'TENANT_DISCOVERY':
-        return {
-          headline: `🏢 Searching for a Rental Home or Office in ${targetArea}?`,
-          caption: `🏢 Searching for a Rental Home or Office in ${targetArea}?\n\nFind genuine houses, portions, and commercial offices for rent with clear photos and zero hidden brokerage fees on Property in Lahore.\n\n👉 Browse rentals or post your rental requirement:\n${destinationUrl}\n\n#RentInLahore #LahoreApartments #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#RentInLahore', '#LahoreApartments', `#${targetArea.replace(/\s+/g, '')}`],
-        };
-      case 'SOCIETY_SPOTLIGHT':
       default:
         return {
-          headline: `📍 Society Spotlight: ${targetArea} on Property in Lahore`,
-          caption: `📍 Society Spotlight: ${targetArea} Real Estate!\n\nDiscover premier residential homes, investment plots, and commercial avenues in ${targetArea}. Owners: Advertise your property free. Buyers: Connect directly with owners via WhatsApp.\n\n👉 Visit the marketplace:\n${destinationUrl}\n\n#PropertyInLahore #${targetArea.replace(/\s+/g, '')}`,
-          hashtags: ['#PropertyInLahore', `#${targetArea.replace(/\s+/g, '')}`],
+          headline: `🏢 All-in-One Property Marketplace for ${targetArea}, Lahore`,
+          caption: `🏢 Welcome to Property in Lahore — The Complete Real Estate Hub for ${targetArea}!\n\nWhether you need to:\n• BUY a house, flat, or plot\n• SELL your property at market demand\n• RENT a home, upper portion, or commercial shop\n• INVEST in high-return rental commercial spaces\n\n✨ We offer:\n✅ 100% Free Property Ads\n✅ Direct WhatsApp Dealings (No middleman hassle)\n✅ Verified Society & Street Level Coverage\n\n👉 Check listings or post your property advertisement now:\n${destinationUrl}\n\n#PropertyInLahore #LahoreRealEstate #${targetArea.replace(/\s+/g, '')}`,
+          hashtags: ['#PropertyInLahore', '#LahoreRealEstate', `#${targetArea.replace(/\s+/g, '')}`],
         };
     }
   }
@@ -112,40 +105,33 @@ export function buildWebsiteMarketingCopy(
   switch (theme) {
     case 'FREE_PROPERTY_LISTINGS':
       return {
-        headline: `🏡 ${targetArea} me apna Makan, Plot ya Flat Sell ya Rent out karna hai?`,
-        caption: `🏡 ${targetArea} me apna Makan, Plot ya Flat Sell ya Rent out karna hai?\n\nFake calls aur commission k chakar se bachein! Property in Lahore par apna property advertisement bilkul FREE lagayein aur genuine buyers aur tenants se direct WhatsApp par rabta karein.\n\n✨ Property in Lahore k Faiday:\n• 100% Free Property Posting\n• Direct WhatsApp Inquiries (No middleman fees)\n• ${targetArea} aur poore Lahore ki targeted reach\n• Verified buyers aur authentic marketplace\n\n👉 Abhi 2 minutes me apna free ad lagayein:\n${destinationUrl}\n\n#LahoreProperty #PropertyInLahore #PakistanRealEstate #${targetArea.replace(/\s+/g, '')}`,
-        hashtags: ['#LahoreProperty', '#PropertyInLahore', '#PakistanRealEstate', `#${targetArea.replace(/\s+/g, '')}`],
+        headline: `🏡 ${targetArea} me Makan, Plot, Flat Sell ya Rent out karna hai? Free Ad Lagayein!`,
+        caption: `🏡 ${targetArea} & All Lahore Real Estate Network!\n\nAgar aap ${targetArea} me koi bhi property SELL, PURCHASE, ya RENT par dena chahte hain, to Property in Lahore par apna ad bilkul FREE lagayein aur genuine buyers aur tenants se direct WhatsApp par rabta karein!\n\n📋 Har Qisam ki Property Available & Accepted:\n• Makan & Kothi (Buy / Rent: 3, 5, 10 Marla & 1 Kanal)\n• Plots & Files (Residential & Commercial)\n• Flats & Luxury Apartments (Furnished & Unfurnished)\n• Upper & Lower Portions (Families k liye)\n• Commercial Shops, Plazas & Offices\n• 'Property Wanted' Demands (Apni matlooba demand post karein)\n\n✨ Property in Lahore k Faiday:\n✅ 100% Free Property Ad Posting\n✅ Direct WhatsApp Contact — Zero agent commission delay\n✅ Authentic & Admin-Moderated Marketplace\n✅ Poore Lahore aur ${targetArea} ki behtareen reach\n\n👉 Abhi 2 minutes me apna free ad lagayein ya verified listings check karein:\n${destinationUrl}\n\n#PropertyInLahore #LahoreRealEstate #MakanBikau #PlotInLahore #${targetArea.replace(/\s+/g, '')}`,
+        hashtags: ['#PropertyInLahore', '#LahoreRealEstate', '#MakanBikau', '#PlotInLahore', `#${targetArea.replace(/\s+/g, '')}`],
       };
     case 'LANDLORD_RENTAL':
       return {
-        headline: `🔑 ${targetArea} k Landlords k liye Best Solution!`,
-        caption: `🔑 ${targetArea} k Landlords k liye Best Solution!\n\nAgar aap ka makan, upper portion ya apartment rent par dene k liye ready hai, to Property in Lahore par apna free ad post karein aur shareef family tenants se direct WhatsApp par contact karein.\n\n✨ Faiday:\n• Zero broker fees\n• Direct tenant chat\n• Safe & easy posting\n\n👉 Abhi apna rental ad lagayein:\n${destinationUrl}\n\n#LahoreRent #HouseForRent #${targetArea.replace(/\s+/g, '')}`,
-        hashtags: ['#LahoreRent', '#HouseForRent', `#${targetArea.replace(/\s+/g, '')}`],
+        headline: `🔑 ${targetArea} me Makan, Flat ya Portion Kiraye par dein bina commission k!`,
+        caption: `🔑 Attention Landlords & Tenants in ${targetArea}!\n\nHave a vacant house, flat, or upper portion? Ya kiraye k liye ghar talash kar rahe hain? Property in Lahore par direct ad lagayein aur bina kisi agent k deal karein!\n\n🏠 Rental Categories:\n• Mukammal Ghar & Kothiyan\n• Separate Upper & Lower Portions\n• 1, 2, 3 Bed Apartments\n• Commercial Dukanen & Offices\n\n✨ Faiday:\n✅ Direct Tenant WhatsApp Chat\n✅ Zero Commission Charges\n✅ Vetted Shareef Family Inquiries\n\n👉 Abhi apna rental ad post karein:\n${destinationUrl}\n\n#RentInLahore #HouseForRent #FlatForRent #${targetArea.replace(/\s+/g, '')}`,
+        hashtags: ['#RentInLahore', '#HouseForRent', '#FlatForRent', `#${targetArea.replace(/\s+/g, '')}`],
       };
     case 'DEALER_PARTNERSHIPS':
       return {
-        headline: `💼 ${targetArea} k Property Dealers aur Estate Consultants k liye!`,
-        caption: `💼 ${targetArea} k Property Dealers aur Estate Consultants k liye!\n\nApni agency ki verified inventory ko online hazaron buyers tak pohanchayein. Property in Lahore par apni plots aur houses ki listings bilkul FREE post karein aur direct clients WhatsApp par receive karein.\n\n✨ Faiday:\n• Unlimited free listings\n• Direct genuine inquiries\n• Clean & active platform\n\n👉 Abhi register karein aur ads post karein:\n${destinationUrl}\n\n#LahoreDealers #EstateAgency #${targetArea.replace(/\s+/g, '')}`,
+        headline: `💼 ${targetArea} k Estate Agents & Property Dealers k liye Free Portal!`,
+        caption: `💼 Attention Real Estate Consultants in ${targetArea}!\n\nApni agency ki verified inventory ko online hazaron buyers aur investors tak pohanchayein bilkul FREE!\n\n📈 Post All Inventory:\n• Houses, Villas & Designer Homes\n• LDA, DHA, Bahria Plots & Files\n• Commercial Shops & Plazas\n• High-Yield Rental Properties\n\n✨ Faiday:\n✅ Direct clients aapke WhatsApp par rabta karenge\n✅ Unlimited free property listings\n✅ Clean, spam-free marketplace\n\n👉 Abhi register karein aur apni agency k ads post karein:\n${destinationUrl}\n\n#LahoreDealers #EstateAgency #${targetArea.replace(/\s+/g, '')}`,
         hashtags: ['#LahoreDealers', '#EstateAgency', `#${targetArea.replace(/\s+/g, '')}`],
       };
     case 'BUYER_DISCOVERY':
       return {
-        headline: `🔍 ${targetArea} me Ghar ya Plot talash kar rahe hain?`,
-        caption: `🔍 ${targetArea} me Ghar ya Plot talash kar rahe hain?\n\nProperty in Lahore par verified properties check karein original photos aur direct owner WhatsApp contact k sath. Ya apni demand 'Property Wanted' section me post karein!\n\n👉 Abhi check karein:\n${destinationUrl}\n\n#BuyProperty #LahorePlots #${targetArea.replace(/\s+/g, '')}`,
-        hashtags: ['#BuyProperty', '#LahorePlots', `#${targetArea.replace(/\s+/g, '')}`],
+        headline: `🔍 ${targetArea} me Ghar, Plot ya Flat khareedna chahte hain?`,
+        caption: `🔍 ${targetArea} me Verified Property Talash Kar Rahe Hain?\n\nFake ads aur broker k chakar se bachein! Property in Lahore par original photos aur direct owner WhatsApp contact k sath verified properties check karein.\n\n🎯 Buy Categories:\n• Brand New & Resale Houses (3, 5, 10 Marla, 1 Kanal)\n• On-Ground Residential & Commercial Plots\n• Modern Apartments & Studios\n• Commercial Showrooms & Shops\n\n💡 Agar pasand ka ghar na mile, to apna 'Property Wanted' ad free lagayein aur owners khud aapse rabta karenge!\n\n👉 Abhi verified properties check karein:\n${destinationUrl}\n\n#BuyProperty #LahorePlots #PropertyInLahore #${targetArea.replace(/\s+/g, '')}`,
+        hashtags: ['#BuyProperty', '#LahorePlots', '#PropertyInLahore', `#${targetArea.replace(/\s+/g, '')}`],
       };
-    case 'TENANT_DISCOVERY':
-      return {
-        headline: `🏢 ${targetArea} me Kiraye ka Makan ya Flat chahiye?`,
-        caption: `🏢 ${targetArea} me Kiraye ka Makan ya Flat chahiye?\n\nProperty in Lahore par active rental listings browse karein aur direct owner se WhatsApp par deal karein bina kisi agent commission k.\n\n👉 Rental ads check karein:\n${destinationUrl}\n\n#LahoreRentals #${targetArea.replace(/\s+/g, '')}`,
-        hashtags: ['#LahoreRentals', `#${targetArea.replace(/\s+/g, '')}`],
-      };
-    case 'SOCIETY_SPOTLIGHT':
     default:
       return {
-        headline: `📍 ${targetArea} Property: Buy, Sell & Rent for Free!`,
-        caption: `📍 ${targetArea} Property: Buy, Sell & Rent for Free!\n\n${targetArea} k tamam residential aur commercial properties ek hi jagah. Owners apna free ad lagayein, aur buyers direct WhatsApp par rabta karein.\n\n👉 Abhi visit karein:\n${destinationUrl}\n\n#PropertyInLahore #${targetArea.replace(/\s+/g, '')}`,
-        hashtags: ['#PropertyInLahore', `#${targetArea.replace(/\s+/g, '')}`],
+        headline: `🏢 ${targetArea} All-in-One Real Estate Hub: Buy, Sell & Rent!`,
+        caption: `🏢 Property in Lahore — ${targetArea} ka Mukammal Real Estate Portal!\n\nChahe aapko:\n• Ghar, Flat ya Plot KHAREEDNA ho\n• Apni property behtareen demand par BECHNI ho\n• Makan ya Portion KIRAYE par dena ya lena ho\n• Commercial Investment karni ho\n\n✨ Property in Lahore par:\n✅ 100% Free Property Posting\n✅ Direct WhatsApp Rabta (No middleman)\n✅ Har area aur society ki verified listings\n\n👉 Abhi check karein ya free ad post karein:\n${destinationUrl}\n\n#PropertyInLahore #LahoreRealEstate #${targetArea.replace(/\s+/g, '')}`,
+        hashtags: ['#PropertyInLahore', '#LahoreRealEstate', `#${targetArea.replace(/\s+/g, '')}`],
       };
   }
 }
