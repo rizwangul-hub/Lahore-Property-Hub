@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#061A3A" />
+    <title>You're offline | Property in Lahore</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+        padding: 24px;
+        color: #fff;
+        background: linear-gradient(145deg, #061a3a, #0a2450);
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        text-align: center;
+      }
+      main { width: min(100%, 440px); }
+      img {
+        display: block;
+        width: min(78vw, 260px);
+        height: auto;
+        margin: 0 auto 28px;
+        border-radius: 8px;
+        box-shadow: 0 0 36px rgb(0 168 45 / 22%);
+      }
+      h1 { margin: 0; font-size: clamp(1.6rem, 6vw, 2rem); }
+      p { color: #d7e3ef; line-height: 1.65; }
+      button {
+        margin-top: 12px;
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 20px;
+        color: #fff;
+        background: #00a82d;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/icon-192.png" alt="Property in Lahore" />
+      <h1>You’re currently offline</h1>
+      <p>Reconnect to the internet to see the latest Lahore listings and property availability.</p>
+      <button type="button" onclick="location.reload()">Try again</button>
+    </main>
+  </body>
+</html>

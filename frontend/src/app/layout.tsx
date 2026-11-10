@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { siteConfig } from '@/config/site';
 import { Header } from '@/components/layout/Header';
@@ -7,6 +7,7 @@ import { LoadingScreen } from '@/components/common/LoadingScreen';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  manifest: '/manifest.webmanifest',
   title: {
     default: `${siteConfig.name} | Premier Real Estate Marketplace in Lahore`,
     template: `%s | ${siteConfig.name}`,
@@ -40,13 +41,26 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   icons: {
-    icon: '/icon.png',
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
+    apple: '/apple-touch-icon.png',
+  },
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.brandName,
+    statusBarStyle: 'default',
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'nOxhVYb-_2WzWnW58lL45gumDyJ8O4R6sHZ_eumO4uE',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#061A3A',
 };
 
 export default function RootLayout({

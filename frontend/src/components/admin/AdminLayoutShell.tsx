@@ -173,7 +173,7 @@ export default function AdminLayoutShell({ children }: { children: React.ReactNo
             alt="Property in Lahore"
             width={2400}
             height={1792}
-            sizes="192px"
+            sizes="92px"
             className="h-auto w-[92px] rounded shadow-[0_0_22px_rgba(0,168,45,0.15)]"
           />
           <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400">

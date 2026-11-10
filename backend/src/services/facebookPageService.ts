@@ -21,6 +21,13 @@ export async function publishToOfficialFacebookPage(
   draft: IMarketingDraft,
   adminEmail?: string
 ): Promise<FacebookPagePublishResult> {
+  if (draft.status !== 'APPROVED') {
+    return {
+      success: false,
+      error: `Cannot publish to Facebook Page. Draft must be in APPROVED status (current: ${draft.status}).`,
+    };
+  }
+
   const pageId = process.env.FB_PAGE_ID || '';
   const pageAccessToken = process.env.FB_PAGE_ACCESS_TOKEN || '';
 
@@ -29,13 +36,6 @@ export async function publishToOfficialFacebookPage(
       success: false,
       error:
         'Official Facebook Page integration is unconfigured. Set FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN to enable official Page publishing.',
-    };
-  }
-
-  if (draft.status !== 'APPROVED') {
-    return {
-      success: false,
-      error: `Cannot publish to Facebook Page. Draft must be in APPROVED status (current: ${draft.status}).`,
     };
   }
 

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, PlusCircle, Search } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { PWAInstallButton } from '@/components/common/PWAInstallButton';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,7 +37,7 @@ export const Header: React.FC = () => {
         <Link
           href="/"
           onClick={closeMenu}
-          className="flex h-20 w-[min(34vw,120px)] items-center transition-opacity hover:opacity-90 sm:w-[140px]"
+          className="flex h-20 w-[min(34vw,120px)] shrink-0 items-center transition-opacity hover:opacity-90 sm:w-[140px]"
           aria-label="Property in Lahore home"
         >
           <Image
@@ -76,8 +77,9 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Header Right Actions */}
-        <div className="hidden lg:flex items-center gap-3">
-          {/* Quick Search Toggle */}
+        <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
+          <PWAInstallButton />
+
           <button
             type="button"
             onClick={() => setSearchOpen((prev) => !prev)}
@@ -88,31 +90,18 @@ export const Header: React.FC = () => {
             <Search className="h-5 w-5" />
           </button>
 
-          {/* Post Property Prominent Button */}
           <Link
             href="/post-property"
-            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700 active:scale-95"
+            className="hidden items-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700 active:scale-95 lg:inline-flex"
           >
             <PlusCircle className="h-4 w-4" />
             <span>Post Property</span>
           </Link>
-        </div>
-
-        {/* Mobile Buttons */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setSearchOpen((prev) => !prev)}
-            className="p-2 text-navy-700 hover:bg-navy-100 rounded-lg focus:outline-none"
-            aria-label="Search"
-          >
-            <Search className="h-5 w-5" />
-          </button>
 
           <button
             type="button"
             onClick={toggleMenu}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-navy-700 hover:bg-navy-100 hover:text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-500"
+            className="inline-flex items-center justify-center rounded-lg p-2 text-navy-700 hover:bg-navy-100 hover:text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-500 lg:hidden"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
